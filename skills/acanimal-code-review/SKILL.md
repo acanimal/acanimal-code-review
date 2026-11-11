@@ -1,5 +1,5 @@
 ---
-name: acr-code-review
+name: acanimal-code-review
 description: Local, CodeRabbit-style code review of the current branch or worktree, run whenever the user asks (typically before committing or pushing). Learns and enforces the project's own standards, keeps the full review history in the repo and maintains a project-wide HTML panel with per-branch reviews and insights. Use when the user asks to review changes/code/a branch, re-review, explain/fix/dismiss review comments (ACR-xxxxxx), analyze or manage coding standards (STD-xxxx), add exceptions, or open the review panel.
 license: MIT
 metadata:

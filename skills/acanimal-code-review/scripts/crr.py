@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""crr - deterministic helper for the acr-code-review skill.
+"""crr - deterministic helper for the acanimal-code-review skill.
 
 Python 3.9+ standard library only. Run it from anywhere inside a git repository.
 All review data lives in <repo>/.code-review/ and is meant to be committed.

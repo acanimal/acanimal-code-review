@@ -17,12 +17,12 @@ Read-only by design: it never runs your tools, never commits, never touches your
 ## Install
 
 ```bash
-npx skills add <owner>/acr-code-review        # into the current project
-npx skills add <owner>/acr-code-review -g     # globally, for all projects
+npx skills add acanimal/acanimal-code-review        # into the current project
+npx skills add acanimal/acanimal-code-review -g     # globally, for all projects
 npx skills update                            # later
 ```
 
-Choose symlink or copy and the agents when prompted. Manual install: copy `skills/acr-code-review/` into `.claude/skills/` (read by Claude Code, OpenCode and Cursor) or any skills folder of your agent.
+Choose symlink or copy and the agents when prompted. Manual install: copy `skills/acanimal-code-review/` into `.claude/skills/` (read by Claude Code, OpenCode and Cursor) or any skills folder of your agent.
 
 ## Use
 
