@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python (scripts/crr.py)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local agent / tool state
+.claude/settings.local.json
+
+# Env / secrets
+.env
+.env.*
