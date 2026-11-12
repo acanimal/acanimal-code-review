@@ -589,6 +589,7 @@
           <a href="#/branch" data-v="branch">Branch</a>
           <a href="#/standards" data-v="standards">Standards</a>
           <a href="#/insights" data-v="insights">Insights</a>
+          <a href="#/help" data-v="help">Help</a>
         </nav>
       </div>
     </header>
@@ -2331,6 +2332,86 @@
           );
         }
 
+        function viewHelp() {
+          var h =
+            "<h1>Help</h1><p class='small muted'>How to run, read and act on code reviews with the " +
+            esc((CRR.local && CRR.local.repo) || "acanimal") +
+            " skill, and how to use this panel.</p>";
+          h += '<div class="sec"><h2>What is this?</h2>';
+          h += md(
+            "A **local code review** of the current branch or worktree, in the spirit of CodeRabbit: whenever you ask your coding agent to review code, it applies the **project's own standards**, keeps the full review history in the repository and maintains this HTML panel.",
+          );
+          h +=
+            '<p class="small muted">All data lives in <code>.code-review/</code> inside the repo (meant to be committed) and is rendered here. No server needed — just open <code>.code-review/index.html</code>.</p>';
+          h += "</div>";
+          h += '<div class="sec"><h2>Running a review</h2>';
+          h += md([
+            "Just ask your coding agent in plain language:",
+            "",
+            "- “Review my changes”, “review the branch”, “review this PR”, “full re-review”, “fix the blockers”, “explain ACR-123”, “manage standards”, “open the panel”.",
+            "",
+            "The agent resolves the diff (`CRR context`), reviews it against the project standards, writes the run and applies it (`CRR apply`), then reports the verdict and blockers.",
+          ].join("\n"));
+          h +=
+            '<p class="small muted">Modes: `auto` (incremental since the last review of the branch when possible), `full` (full re-review of pending changes) and `branch` (whole branch).</p>';
+          h += "</div>";
+          h += '<div class="sec"><h2>Reading the verdict</h2>';
+          h += md([
+            "Per branch, the panel shows a verdict:",
+            "",
+            "- ✓ **Ready to commit** — no open critical/major finding and no failing blocking check.",
+            "- ✕ **Blocked** — open critical/major findings or a failing blocking check. Not ready to commit until they are fixed or properly dismissed.",
+            "- Open findings are listed by severity — critical, major, minor, nitpick. Critical and major block; minor and nitpick do not.",
+          ].join("\n"));
+          h += "</div>";
+          h += '<div class="sec"><h2>Reading findings</h2>';
+          h += md([
+            "Each finding is a comment raised during a review, with:",
+            "",
+            "- **Severity** — `critical` (breaks production, data loss, security issue, crash) and `major` (real bug or required-standard violation) block the commit; `minor` (recommended-standard violation) and `nitpick` (preference-standard violation) do not.",
+            "- **Category** — `bug`, `security`, `performance`, `maintainability`, `style`, `docs`, `tests`, `architecture`, `other`.",
+            "- **Standard** — linked `STD-xxxx` when the finding violates a project standard; see the Standards tab.",
+            "- **Location** — repo-relative file and line range, in the current version of the file.",
+            "- **Suggested change** — unified diff (`-` / `+`) when the fix is local and confident.",
+            "- **🤖 Prompt for AI agents** — self-contained instruction to hand over to another coding agent; use the copy button to grab it.",
+          ].join("\n"));
+          h += "</div>";
+          h += '<div class="sec"><h2>Acting on findings</h2>';
+          h += md([
+            "Findings carry an ID like `ACR-1a2b3c`. Typical requests:",
+            "",
+            "- **Explain** `ACR-1a2b3c` — the agent reads the code and answers in chat; no data change.",
+            "- **Fix** `ACR-1a2b3c`, “fix the blockers”, “apply the suggestions” — the agent shows the proposed change (diff) and asks for confirmation; only what is confirmed is applied, then the branch is re-reviewed.",
+            "- **Dismiss** `ACR-1a2b3c` — mark as not applicable, with a required reason.",
+            "- **Exception** — “`ACR-1a2b3c` is fine in `src/legacy/`”, “ignore `STD-1a2b` here” — adds a time-boxed exception (path, reason, optional expiry).",
+          ].join("\n"));
+          h += "</div>";
+          h += '<div class="sec"><h2>Managing standards</h2>';
+          h += md([
+            "The standards catalog is stored in `.code-review/` and managed through the agent: proposed standards are not enforced until validated; levels map to severities (`required` → `major`, `recommended` → `minor`, `preference` → `nitpick`).",
+            "",
+            "Typical requests: “show pending standards”, “in this project we do Y” (record or change a standard), “deprecate `STD-1a2b` in favour of `STD-9f8e`” (with migration tracking).",
+          ].join("\n"));
+          h += "</div>";
+          h += '<div class="sec"><h2>Quick reference</h2>';
+          h += md([
+            "```",
+            "CRR init                         create/upgrade .code-review/",
+            "CRR context [--mode auto|pending|full|branch]   resolve the diff to review",
+            "CRR apply <run.json>             record a review or a status change",
+            "CRR std <ops.json>                manage standards / exceptions",
+            "CRR list | CRR show <ID> | CRR standards   read data",
+            "CRR config [--language xx] [--base REF] [--check ID --enabled|--blocking true|false]",
+            "CRR repo-stats                   repo size / standards analysis",
+            "CRR index                         rebuild the panel index",
+            "```",
+          ].join("\n"));
+          h +=
+            '<p class="small muted">Full command list and file formats: <code>scripts/crr.py --help</code>, <code>references/run-schema.md</code> and <code>references/standards.md</code>.</p>';
+          h += "</div>";
+          return h;
+        }
+
         // ---------------------------------------------------------------- router
         function route() {
           var hash = location.hash.replace(/^#\/?/, ""),
@@ -2347,6 +2428,7 @@
           else if (v === "standards")
             html = viewStandards(parts[1], (/(?:^|&)f=(\w+)/.exec(q) || [])[1]);
           else if (v === "insights") html = viewInsights();
+          else if (v === "help") html = viewHelp();
           else {
             v = "home";
             html = viewHome();
