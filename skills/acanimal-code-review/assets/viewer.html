@@ -2677,7 +2677,20 @@
           var h =
             '<a class="brand" href="#/">Code review' +
             (repoName() ? "<span>" + esc(repoName()) + "</span>" : "") +
-            '</a><div class="side-h">Branches</div><nav>';
+            '</a><div class="side-h">Project</div><nav>' +
+            pl("insights", "#/insights", "Insights", "") +
+            pl(
+              "standards",
+              "#/standards",
+              "Standards",
+              prop
+                ? '<span class="bc warn" title="proposed standards waiting for validation">' +
+                    prop +
+                    " to validate</span>"
+                : "",
+            ) +
+            pl("help", "#/help", "Help", "") +
+            '</nav><div class="side-h">Branches</div><nav>';
           bs.forEach(function (b) {
             var n = openC(b).filter(nonNit).length;
             h +=
@@ -2706,26 +2719,30 @@
               '</span><span class="cur">not reviewed</span></div>';
           if (!bs.length && !ghost)
             h += '<p class="side-empty">No reviews yet</p>';
-          h +=
-            '</nav><div class="side-h">Project</div><nav>' +
-            pl(
-              "standards",
-              "#/standards",
-              "Standards",
-              prop
-                ? '<span class="bc warn" title="proposed standards waiting for validation">' +
-                    prop +
-                    " to validate</span>"
-                : "",
-            ) +
-            pl("insights", "#/insights", "Insights", "") +
-            pl("help", "#/help", "Help", "") +
-            "</nav>";
+          h += "</nav>";
           side.innerHTML = h;
 
           var cur = v === "branch" ? "b:" + slug : v;
           msel.innerHTML =
-            '<optgroup label="Branches">' +
+            '<optgroup label="Project">' +
+            [
+              ["insights", "#/insights", "Insights"],
+              ["standards", "#/standards", "Standards"],
+              ["help", "#/help", "Help"],
+            ]
+              .map(function (x) {
+                return (
+                  '<option value="' +
+                  x[1] +
+                  '"' +
+                  (cur === x[0] ? " selected" : "") +
+                  ">" +
+                  x[2] +
+                  "</option>"
+                );
+              })
+              .join("") +
+            '</optgroup><optgroup label="Branches">' +
             bs
               .map(function (b) {
                 var s = stateOf(b);
@@ -2738,24 +2755,6 @@
                   (s === "blocked" ? "✕ " : s === "ready" ? "✓ " : "· ") +
                   esc(b.branch) +
                   (isCurrent(b) ? " (current)" : "") +
-                  "</option>"
-                );
-              })
-              .join("") +
-            '</optgroup><optgroup label="Project">' +
-            [
-              ["standards", "#/standards", "Standards"],
-              ["insights", "#/insights", "Insights"],
-              ["help", "#/help", "Help"],
-            ]
-              .map(function (x) {
-                return (
-                  '<option value="' +
-                  x[1] +
-                  '"' +
-                  (cur === x[0] ? " selected" : "") +
-                  ">" +
-                  x[2] +
                   "</option>"
                 );
               })
@@ -2784,7 +2783,9 @@
             return (
               '<h1>Branch not found</h1><p class="muted">No review data for <code>' +
               esc(slug) +
-              '</code>. <a href="#/">Go to the current branch →</a></p>'
+              '</code>. <a href="' +
+              (sortedBranches()[0] ? bHref(sortedBranches()[0]) : "#/") +
+              '">Go to the current branch →</a></p>'
             );
           if (UI.slug !== b.slug) {
             UI.slug = b.slug;
@@ -4313,9 +4314,8 @@
             return;
           }
           if (v === "home") {
-            var d = sortedBranches()[0];
-            if (d) {
-              location.replace(bHref(d));
+            if (sortedBranches().length) {
+              location.replace("#/insights");
               return;
             }
             v = "welcome";
