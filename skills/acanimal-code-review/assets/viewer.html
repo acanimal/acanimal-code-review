@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- acanimal-code-review viewer v1. Static file: never edited per review. Data comes from ./data/*.js -->
+<!-- acanimal-code-review viewer v2 (experimental layout). Static file: never edited per review. Data comes from ./data/*.js -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -121,67 +121,6 @@
         background: var(--soft);
         padding: 1px 5px;
         border-radius: 4px;
-      }
-      header.top {
-        position: sticky;
-        top: 0;
-        z-index: 5;
-        background: var(--bg);
-        border-bottom: 1px solid var(--line);
-      }
-      .bar {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 10px 16px;
-        display: flex;
-        gap: 14px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      .brand {
-        font-weight: 700;
-        letter-spacing: -0.01em;
-      }
-      .brand span {
-        color: var(--muted);
-        font-weight: 500;
-      }
-      nav {
-        display: flex;
-        gap: 4px;
-        flex-wrap: wrap;
-        margin-left: auto;
-      }
-      nav a {
-        padding: 6px 11px;
-        border-radius: 7px;
-        color: var(--ink);
-        font-weight: 500;
-      }
-      nav a.on {
-        background: var(--panel);
-        box-shadow: inset 0 0 0 1px var(--line);
-      }
-      main {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 18px 16px 80px;
-      }
-      h1 {
-        font-size: 22px;
-        margin: 4px 0 6px;
-        line-height: 1.25;
-      }
-      h2 {
-        font-size: 16px;
-        margin: 0 0 12px;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
-      h3 {
-        font-size: 14px;
-        margin: 14px 0 8px;
       }
       .sec {
         background: var(--panel);
@@ -431,14 +370,26 @@
         padding: 4px 0;
       }
       .alert {
-        border-left: 3px solid var(--major);
+        border: 1px solid color-mix(in srgb, var(--major) 28%, var(--line));
         padding: 8px 12px;
-        background: var(--soft);
-        border-radius: 6px;
+        background: color-mix(in srgb, var(--major) 6%, var(--panel));
+        border-radius: 8px;
         margin: 6px 0;
       }
       .alert.info {
-        border-left-color: var(--info);
+        border-color: var(--line);
+        background: var(--panel);
+        color: var(--muted);
+        font-size: 13px;
+        display: flex;
+        gap: 8px;
+        align-items: baseline;
+      }
+      .alert.info .ico {
+        color: var(--minor);
+        flex: none;
+        position: relative;
+        top: 2px;
       }
       .tl {
         border-left: 2px solid var(--line);
@@ -563,7 +514,1032 @@
         fill: var(--muted);
         font-size: 10px;
       }
-      @media (max-width: 640px) {
+      /* ------------------------------------------------------------ v2 layout */
+      :root {
+        --sel: color-mix(in srgb, var(--accent) 7%, var(--panel));
+        --side: color-mix(in srgb, var(--ink) 3%, var(--bg));
+      }
+      h1 {
+        font-size: 21px;
+        margin: 0;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+      }
+      h2 {
+        font-size: 15px;
+        margin: 0 0 12px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      h3 {
+        font-size: 13.5px;
+        margin: 16px 0 8px;
+      }
+      h2.sub {
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin: 28px 0 10px;
+      }
+      h2.sub:first-child {
+        margin-top: 4px;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 12.5px;
+        margin: 4px 0 14px;
+      }
+      .shell {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .side {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        border-right: 1px solid var(--line);
+        background: var(--side);
+        padding: 14px 10px 24px;
+      }
+      .side .brand {
+        display: block;
+        padding: 4px 10px 12px;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .side .brand span {
+        display: block;
+        font-weight: 500;
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+      .side .brand:hover {
+        text-decoration: none;
+      }
+      .side-h {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: 14px 10px 6px;
+      }
+      .side .bl,
+      .side .pl {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 7px;
+        color: var(--ink);
+        font-size: 13.5px;
+        min-width: 0;
+      }
+      .side a.bl:hover,
+      .side a.pl:hover {
+        background: var(--soft);
+        text-decoration: none;
+      }
+      .side a.on {
+        background: var(--panel);
+        box-shadow: inset 0 0 0 1px var(--line);
+        font-weight: 600;
+      }
+      .bl .bn {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12.5px;
+      }
+      .pl .bn2 {
+        flex: 1;
+      }
+      .bl.hist {
+        opacity: 0.6;
+      }
+      .bl .cur {
+        font-size: 10.5px;
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .bl.ghost .cur {
+        color: var(--muted);
+      }
+      .bc {
+        font-size: 11px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        font-weight: 500;
+      }
+      .bc.warn {
+        color: var(--info);
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: none;
+        box-shadow: inset 0 0 0 1.5px var(--muted);
+      }
+      .dot.blocked {
+        background: var(--critical);
+        box-shadow: none;
+      }
+      .dot.ready {
+        background: var(--ok);
+        box-shadow: none;
+      }
+      .side-empty {
+        color: var(--muted);
+        font-size: 12.5px;
+        padding: 4px 10px;
+        margin: 0;
+      }
+      .mtop {
+        display: none;
+      }
+      #app {
+        max-width: 1040px;
+        width: 100%;
+        padding: 22px 32px 96px;
+        margin: 0 auto;
+      }
+      .galerts {
+        margin-bottom: 16px;
+        font-size: 13px;
+      }
+
+      ::selection {
+        background: color-mix(in srgb, var(--accent) 22%, transparent);
+      }
+      html {
+        scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent)
+          transparent;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      a {
+        text-underline-offset: 2px;
+      }
+      .ico {
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.125em;
+        flex: none;
+      }
+      .verdict .vi {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        flex: none;
+        font-size: 15px;
+        color: var(--panel);
+        background: var(--muted);
+      }
+      .verdict.blocked .vi {
+        background: var(--critical);
+      }
+      .verdict.ready .vi {
+        background: var(--ok);
+      }
+      .verdict.none .vi {
+        background: none;
+        box-shadow: inset 0 0 0 1.5px var(--muted);
+      }
+      .ckic.ok,
+      .ckic.bad,
+      .ckic.warn,
+      .ckic.muted {
+        display: inline-grid;
+        place-items: center;
+        width: 18px;
+        font-weight: 700;
+      }
+      .checklist.alldone {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        color: var(--muted);
+        font-size: 13.5px;
+      }
+      .checklist.alldone .ic {
+        display: grid;
+        place-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--ok);
+        color: var(--panel);
+        font-size: 12px;
+        flex: none;
+      }
+      .checklist.alldone b {
+        color: var(--ink);
+      }
+
+      /* branch header */
+      .bh-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .bh h1 code {
+        background: none;
+        padding: 0;
+        font-size: 19px;
+      }
+      .badge.cur-b {
+        color: var(--accent);
+      }
+      .verdict {
+        align-items: flex-start;
+      }
+      .verdict.none {
+        color: var(--muted);
+      }
+      .verdict .vt {
+        font-size: 15px;
+      }
+      .verdict .vs {
+        font-size: 12.5px;
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .bks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .bk {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11.5px;
+        font-weight: 500;
+        padding: 3px 8px;
+        border-radius: 6px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+      .bk:hover {
+        border-color: var(--accent);
+        text-decoration: none;
+      }
+      details.commit {
+        margin-top: 10px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel);
+      }
+      details.commit > summary {
+        padding: 8px 12px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .lbl3 {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .cm1 {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .withcopy {
+        position: relative;
+      }
+      .withcopy > [data-copy] {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+      }
+      .withcopy > details > summary {
+        padding-right: 110px;
+      }
+      .withcopy.prompt-w {
+        margin-top: 10px;
+      }
+      .withcopy.prompt-w > [data-copy] {
+        top: 4px;
+        right: 5px;
+      }
+      details.commit pre {
+        margin: 0 12px 12px;
+        white-space: pre-wrap;
+      }
+
+      /* tabs */
+      .tabs {
+        position: sticky;
+        top: 0;
+        z-index: 4;
+        background: var(--bg);
+        display: flex;
+        gap: 2px;
+        border-bottom: 1px solid var(--line);
+        margin: 18px 0 16px;
+        overflow-x: auto;
+      }
+      .tab {
+        padding: 11px 14px 10px;
+        border-bottom: 2px solid transparent;
+        color: var(--muted);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .tab:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .tab.on {
+        color: var(--ink);
+        border-bottom-color: var(--accent);
+      }
+      .tn {
+        margin-left: 6px;
+        font-size: 11.5px;
+        background: var(--soft);
+        border-radius: 999px;
+        padding: 1px 7px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+      .tn.bad {
+        background: color-mix(in srgb, var(--critical) 14%, var(--panel));
+        color: var(--critical);
+      }
+
+      /* findings */
+      .ftool {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .ftool .chips {
+        margin: 0;
+      }
+      .chip .d {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        margin-right: 6px;
+        vertical-align: 1px;
+      }
+      .chip:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+      .chip:disabled:hover {
+        border-color: var(--line);
+      }
+      .kbdhint {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11px;
+        border: 1px solid var(--line);
+        border-bottom-width: 2px;
+        border-radius: 4px;
+        padding: 0 4px;
+        background: var(--panel);
+        color: var(--ink);
+      }
+      .fall {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+      .flist {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--panel);
+        overflow: hidden;
+      }
+      .fpath {
+        padding: 7px 14px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        color: var(--muted);
+        background: var(--soft);
+        border-top: 1px solid var(--line);
+        word-break: break-all;
+      }
+      .fpath:first-child {
+        border-top: 0;
+      }
+      .f {
+        border-top: 1px solid var(--line);
+        scroll-margin-top: 64px;
+      }
+      .fpath + .f {
+        border-top: 0;
+      }
+      .frow {
+        all: unset;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 76px minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: baseline;
+        width: 100%;
+        padding: 10px 14px;
+        cursor: pointer;
+      }
+      .frow:hover {
+        background: var(--soft);
+      }
+      .frow:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+      }
+      .f.sel > .frow {
+        background: var(--sel);
+      }
+      .f.open {
+        background: color-mix(in srgb, var(--ink) 1.5%, var(--panel));
+      }
+      .ft {
+        line-height: 1.45;
+      }
+      .f.open .ft {
+        font-weight: 600;
+      }
+      .fl {
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .sev {
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+      }
+      .sev:before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .fbody {
+        display: none;
+        padding: 0 16px 16px 102px;
+      }
+      .f.open .fbody {
+        display: block;
+      }
+      .ftags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 10px;
+        align-items: center;
+        margin: 0 0 4px;
+      }
+      .fbody p {
+        margin: 8px 0;
+        max-width: 78ch;
+      }
+      .fmeta {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+      details.prompt {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+      details.prompt > summary {
+        padding: 8px 110px 8px 10px;
+        font-size: 12.5px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+      }
+      details.prompt pre {
+        margin: 0 10px 10px;
+        white-space: pre-wrap;
+      }
+      .fempty {
+        padding: 32px 20px;
+        text-align: center;
+        color: var(--muted);
+        border: 1px dashed var(--line);
+        border-radius: 12px;
+      }
+      .fempty b {
+        display: block;
+        color: var(--ok);
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+
+      /* change */
+      .effort {
+        display: inline-flex;
+        gap: 8px;
+        align-items: baseline;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 12px;
+        font-size: 13px;
+      }
+      .effort + p {
+        margin: 6px 0 0;
+      }
+      .lead {
+        font-size: 15px;
+        line-height: 1.65;
+      }
+      .lead p,
+      .prose p {
+        max-width: 75ch;
+        margin: 0 0 10px;
+      }
+      ul.hl {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+      ul.hl li {
+        display: grid;
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 10px;
+        padding: 5px 0;
+        align-items: baseline;
+      }
+      ul.hl .badge {
+        justify-self: start;
+      }
+      details.fold {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel);
+        margin: 8px 0;
+      }
+      details.fold > summary {
+        padding: 10px 14px;
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+      }
+      details.fold > summary:before {
+        content: "▸";
+        color: var(--muted);
+        display: inline-block;
+        transition: transform 0.15s;
+      }
+      details.fold[open] > summary:before {
+        transform: rotate(90deg);
+      }
+      .ftitle {
+        flex: 1;
+        font-weight: 600;
+      }
+      .foldb {
+        padding: 2px 16px 12px 36px;
+        border-top: 1px solid var(--line);
+      }
+      ul.files {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+      ul.files li {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        padding: 1px 0;
+        word-break: break-all;
+        color: var(--muted);
+      }
+
+      /* standards */
+      .sfilters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+        gap: 20px;
+        align-items: start;
+      }
+      .slist {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--panel);
+        overflow: hidden;
+      }
+      .scat {
+        padding: 6px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        background: var(--soft);
+        border-top: 1px solid var(--line);
+      }
+      .scat:first-child {
+        border-top: 0;
+      }
+      .srow {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 2px 10px;
+        padding: 9px 12px;
+        border-top: 1px solid var(--line);
+        color: var(--ink);
+      }
+      .scat + .srow {
+        border-top: 0;
+      }
+      .srow:hover {
+        background: var(--soft);
+        text-decoration: none;
+      }
+      .srow.on {
+        background: var(--sel);
+      }
+      .srow.on .st {
+        font-weight: 600;
+      }
+      .srow .sid {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11.5px;
+        color: var(--muted);
+        grid-row: span 2;
+        padding-top: 2px;
+      }
+      .srow .st {
+        font-weight: 500;
+        line-height: 1.35;
+      }
+      .srow .sm {
+        font-size: 11.5px;
+        color: var(--muted);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .sdetail {
+        position: sticky;
+        top: 16px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 18px 20px;
+        max-height: calc(100vh - 32px);
+        overflow: auto;
+      }
+      .sdetail h2 {
+        font-size: 17px;
+        margin: 8px 0 6px;
+        line-height: 1.3;
+      }
+      dl.sm2 {
+        display: grid;
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: 6px 12px;
+        font-size: 12.5px;
+        margin: 12px 0;
+      }
+      dl.sm2 dt {
+        color: var(--muted);
+      }
+      dl.sm2 dd {
+        margin: 0;
+        word-break: break-word;
+      }
+
+      /* help */
+      .help {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr);
+        gap: 36px;
+        align-items: start;
+      }
+      .toc {
+        position: sticky;
+        top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        font-size: 13px;
+      }
+      .toc a {
+        color: var(--muted);
+        padding: 5px 10px;
+        border-radius: 6px;
+      }
+      .toc a:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .toc a .tnum {
+        display: inline-block;
+        width: 22px;
+        font-variant-numeric: tabular-nums;
+      }
+      .toc a.on {
+        color: var(--ink);
+        background: var(--panel);
+        box-shadow: inset 0 0 0 1px var(--line);
+        font-weight: 600;
+      }
+      .hsec {
+        padding: 8px 0 28px;
+        border-top: 1px solid var(--line);
+        scroll-margin-top: 12px;
+      }
+      .hsec h2 {
+        font-size: 18px;
+        margin: 18px 0 10px;
+      }
+      .hsec h2 .num {
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+        font-size: 14px;
+        min-width: 22px;
+      }
+      .hsec p,
+      .hsec li {
+        max-width: 75ch;
+      }
+      .say {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel);
+        padding: 8px 8px 8px 14px;
+        margin: 12px 0;
+      }
+      .lbl2 {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        margin: 2px 0 4px;
+      }
+      .phrase {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 3px 0;
+      }
+      .phrase q {
+        font-weight: 600;
+      }
+      dl.kv {
+        display: grid;
+        grid-template-columns: 120px minmax(0, 1fr);
+        gap: 4px 16px;
+        margin: 12px 0;
+      }
+      dl.kv dt {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        padding-top: 3px;
+      }
+      dl.kv dd {
+        margin: 0;
+      }
+      dl.kv dd p {
+        margin: 0 0 6px;
+      }
+      dl.kv dd ul {
+        margin: 0 0 6px;
+        padding-left: 18px;
+      }
+      ol.cycle {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 14px 0;
+      }
+      ol.cycle li {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 12px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      ol.cycle li.arr {
+        background: none;
+        border: 0;
+        padding: 0;
+        color: var(--muted);
+      }
+      table.htable td {
+        font-size: 13.5px;
+      }
+      table.htable td:first-child {
+        font-weight: 500;
+      }
+      .checklist {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px 18px 8px;
+        margin: 18px 0 26px;
+      }
+      .checklist .ch {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .progress {
+        height: 6px;
+        background: var(--soft);
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 10px 0 6px;
+      }
+      .progress i {
+        display: block;
+        height: 100%;
+        background: var(--ok);
+      }
+      .ck {
+        display: grid;
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 4px 10px;
+        padding: 10px 0;
+        border-top: 1px solid var(--line);
+      }
+      .ck .ic .ico {
+        font-size: 11px;
+      }
+      .ck .ic {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 1.5px solid var(--muted);
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .ck.done .ic {
+        background: var(--ok);
+        border-color: var(--ok);
+        color: var(--panel);
+      }
+      .ck.done .ckt {
+        color: var(--muted);
+      }
+      .ck .ckt {
+        font-weight: 600;
+      }
+      .ck .cks {
+        grid-column: 2;
+        display: flex;
+        gap: 8px 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 12.5px;
+      }
+      .ck .cks q {
+        font-weight: 600;
+      }
+      .welcome {
+        max-width: 720px;
+      }
+
+      @media (max-width: 760px) {
+        .shell {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .side {
+          display: none;
+        }
+        .mtop {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          padding: 10px 16px;
+          border-bottom: 1px solid var(--line);
+          position: sticky;
+          top: 0;
+          z-index: 6;
+          background: var(--bg);
+        }
+        .mtop .brand {
+          font-weight: 700;
+          color: var(--ink);
+          white-space: nowrap;
+        }
+        .mtop select {
+          flex: 1;
+          min-width: 0;
+        }
+        #app {
+          padding: 16px 16px 80px;
+        }
+        .tabs {
+          top: 52px;
+        }
+        .frow {
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 2px 10px;
+        }
+        .frow .sev {
+          grid-column: 1 / -1;
+        }
+        .fbody {
+          padding: 0 14px 14px;
+        }
+        .kbdhint {
+          display: none;
+        }
+        .split {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .sdetail {
+          position: static;
+          max-height: none;
+          scroll-margin-top: 64px;
+        }
+        .help {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 4px;
+        }
+        .toc {
+          top: 52px;
+          z-index: 3;
+          flex-direction: row;
+          overflow-x: auto;
+          background: var(--bg);
+          padding: 6px 0;
+        }
+        .toc a {
+          white-space: nowrap;
+        }
+        .hsec {
+          scroll-margin-top: 104px;
+        }
+        dl.kv,
+        dl.sm2 {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        ul.hl li {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 2px;
+        }
+        .foldb {
+          padding-left: 16px;
+        }
         th,
         td {
           padding: 7px 5px;
@@ -574,26 +1550,18 @@
         .hbar {
           grid-template-columns: minmax(70px, 40%) 1fr 36px;
         }
-        nav {
-          margin-left: 0;
-        }
       }
     </style>
   </head>
   <body>
-    <header class="top">
-      <div class="bar">
-        <div class="brand" id="brand">Code review</div>
-        <nav id="nav">
-          <a href="#/" data-v="home">Overview</a>
-          <a href="#/branch" data-v="branch">Branch</a>
-          <a href="#/standards" data-v="standards">Standards</a>
-          <a href="#/insights" data-v="insights">Insights</a>
-          <a href="#/help" data-v="help">Help</a>
-        </nav>
-      </div>
+    <header class="mtop">
+      <a class="brand" href="#/">Code review</a>
+      <select id="msel" aria-label="Go to"></select>
     </header>
-    <main id="app"><p class="muted">Loading…</p></main>
+    <div class="shell">
+      <aside class="side" id="side"></aside>
+      <main id="app"><p class="muted">Loading…</p></main>
+    </div>
 
     <script>
       window.CRR = {
@@ -649,7 +1617,9 @@
           "var(--c5)",
           "var(--c6)",
         ];
-        var app = document.getElementById("app");
+        var app = document.getElementById("app"),
+          side = document.getElementById("side"),
+          msel = document.getElementById("msel");
 
         // ---------------------------------------------------------------- loading
         function loadAll(done) {
@@ -826,9 +1796,9 @@
         }
         function verdictBadge(v) {
           return v === "ready"
-            ? '<span class="badge ok">✓ Ready</span>'
+            ? '<span class="badge ok">Ready</span>'
             : v === "blocked"
-              ? '<span class="badge bad">✕ Blocked</span>'
+              ? '<span class="badge bad">Blocked</span>'
               : '<span class="badge muted">—</span>';
         }
         function openC(b) {
@@ -1018,7 +1988,7 @@
         function copyText(t, btn) {
           var done = function () {
             var o = btn.textContent;
-            btn.textContent = "Copied ✓";
+            btn.textContent = "Copied";
             setTimeout(function () {
               btn.textContent = o;
             }, 1300);
@@ -1120,784 +2090,6 @@
             .join("");
         }
 
-        // ---------------------------------------------------------------- views
-        function viewHome() {
-          var bs = CRR.branches.slice().sort(function (a, b) {
-            return (
-              isCurrent(b) - isCurrent(a) ||
-              String(b.updated_at).localeCompare(String(a.updated_at))
-            );
-          });
-          var cur = bs.filter(isCurrent)[0];
-          var h =
-            "<h1>" + esc((CRR.local && CRR.local.repo) || "Project") + "</h1>";
-          h +=
-            '<p class="muted small">' +
-            bs.length +
-            " branch(es) with reviews · " +
-            CRR.standards.filter(function (s) {
-              return s.status === "active";
-            }).length +
-            " active standards</p>";
-          h += alertsHtml(globalAlerts());
-          if (cur) {
-            var o = bySev(openC(cur));
-            h +=
-              '<div class="sec"><h2>Current branch <code>' +
-              esc(cur.branch) +
-              "</code></h2>" +
-              verdictBlock(cur) +
-              '<p class="small muted" style="margin-top:10px">Open: ' +
-              SEV.map(function (s) {
-                return (
-                  '<span class="sev-' + s + '">' + o[s] + " " + s + "</span>"
-                );
-              }).join(" · ") +
-              " · last review " +
-              fmtDate(cur.last_review && cur.last_review.at) +
-              ' · <a href="#/branch/' +
-              encodeURIComponent(cur.slug) +
-              '">Open branch →</a></p></div>';
-          } else if (CRR.local) {
-            h +=
-              '<div class="sec"><h2>Current branch <code>' +
-              esc(CRR.local.current_branch) +
-              '</code></h2><p class="muted">Not reviewed yet. Ask your agent: “review my changes”.</p></div>';
-          }
-          h +=
-            '<div class="sec"><h2>Branches <span class="n">' +
-            bs.length +
-            '</span></h2><div class="scroll"><table><thead><tr><th>Branch</th><th>Verdict</th><th>Open</th><th>Reviews</th><th>Last review</th><th>State</th></tr></thead><tbody>';
-          if (!bs.length)
-            h += '<tr><td colspan="6" class="empty">No reviews yet.</td></tr>';
-          bs.forEach(function (b) {
-            var o = bySev(openC(b));
-            h +=
-              '<tr class="click' +
-              (isCurrent(b) ? " current" : "") +
-              '" data-href="#/branch/' +
-              encodeURIComponent(b.slug) +
-              '"><td><code>' +
-              esc(b.branch) +
-              "</code>" +
-              (isCurrent(b) ? ' <span class="badge">current</span>' : "") +
-              "</td><td>" +
-              verdictBadge(b.verdict) +
-              "</td><td>" +
-              SEV.map(function (s) {
-                return o[s]
-                  ? '<span class="sev-' +
-                      s +
-                      '">' +
-                      o[s] +
-                      s[0].toUpperCase() +
-                      "</span>"
-                  : "";
-              })
-                .filter(Boolean)
-                .join(" ") +
-              (openC(b).length ? "" : '<span class="muted">0</span>') +
-              "</td><td>" +
-              reviewRuns(b).length +
-              "</td><td>" +
-              fmtDate(b.last_review && b.last_review.at) +
-              "</td><td>" +
-              (isLocal(b)
-                ? "active"
-                : '<span class="muted">historical</span>') +
-              "</td></tr>";
-          });
-          h += "</tbody></table></div></div>";
-          var runs = allRuns().slice(-40);
-          h +=
-            '<div class="sec"><h2>Findings per review</h2>' +
-            legend(
-              SEV.map(function (s) {
-                return { name: SEV_LABEL[s], color: SEV_COLOR[s] };
-              }),
-            ) +
-            columns(
-              runs.map(function (r) {
-                return {
-                  label: r.branch + " #" + r.n + " · " + fmtDate(r.at),
-                  short: day(r.at).slice(5),
-                  segments: SEV.map(function (s) {
-                    return {
-                      name: s,
-                      value: r.newBySev[s],
-                      color: SEV_COLOR[s],
-                    };
-                  }),
-                };
-              }),
-            ) +
-            '<p class="small muted">New findings raised in each review run (all branches, chronological). <a href="#/insights">More insights →</a></p></div>';
-          return h;
-        }
-
-        function verdictBlock(b) {
-          var o = openC(b),
-            blocking = o.filter(function (c) {
-              return c.severity === "critical" || c.severity === "major";
-            });
-          var checks = (b.checks_latest || []).filter(function (r) {
-            return r.status === "fail" && checkName(r.id).blocking;
-          });
-          var n = blocking.length + checks.length;
-          if (!b.verdict)
-            return '<div class="verdict"><span class="muted">No review yet</span></div>';
-          return (
-            '<div class="verdict ' +
-            (n ? "blocked" : "ready") +
-            '"><span class="big">' +
-            (n ? "✕" : "✓") +
-            "</span><div>" +
-            (n ? n + " blocker(s) — not ready to commit" : "Ready to commit") +
-            '<div class="small muted" style="font-weight:400">' +
-            (n
-              ? blocking
-                  .map(function (c) {
-                    return c.id;
-                  })
-                  .concat(
-                    checks.map(function (r) {
-                      return "check: " + r.id;
-                    }),
-                  )
-                  .join(" · ")
-              : "No critical/major comments and no blocking checks failing.") +
-            "</div></div></div>"
-          );
-        }
-
-        function commentHtml(c, closed) {
-          var std = c.standard ? stdById(c.standard) : null;
-          var prompt =
-            c.agent_prompt ||
-            "In " + loc(c) + ": " + c.title + ". " + (c.body || "");
-          var h =
-            '<details class="cmt s-' +
-            c.severity +
-            '" data-sev="' +
-            c.severity +
-            '"' +
-            (!closed && c.severity !== "nitpick" ? " open" : "") +
-            "><summary>" +
-            sevBadge(c.severity) +
-            '<span class="badge">' +
-            esc(c.category || "other") +
-            "</span>" +
-            (c.standard
-              ? '<a class="badge" href="#/standards/' +
-                c.standard +
-                '" title="' +
-                esc(std ? std.title : "") +
-                '">' +
-                c.standard +
-                "</a>"
-              : "") +
-            '<span class="ct">' +
-            inl(c.title) +
-            '</span><span class="loc mono">' +
-            esc(loc(c)) +
-            "</span>" +
-            (closed
-              ? '<span class="badge ' +
-                (c.status === "resolved" ? "ok" : "muted") +
-                '">' +
-                esc(c.status) +
-                "</span>"
-              : "") +
-            '<span class="cid mono">' +
-            esc(c.id) +
-            '</span></summary><div class="cb">' +
-            md(c.body);
-          if (c.suggestion)
-            h +=
-              '<div class="lbl">Suggested change</div>' +
-              (/^[+-]/m.test(c.suggestion)
-                ? diffHtml(c.suggestion)
-                : '<pre class="code">' + esc(c.suggestion) + "</pre>");
-          h +=
-            '<details style="margin-top:8px"><summary class="small muted"><b>🤖 Prompt for AI agents</b></summary><pre class="code" style="white-space:pre-wrap">' +
-            esc(prompt) +
-            "</pre>" +
-            copyBtn(prompt) +
-            "</details>";
-          h +=
-            '<div class="small muted" style="margin-top:8px">Raised in review #' +
-            (c.created_run || "?") +
-            (c.closed_run ? " · closed in #" + c.closed_run : "") +
-            (c.resolution ? " · " + inl(c.resolution) : "") +
-            "</div></div></details>";
-          return h;
-        }
-
-        function viewBranch(slug) {
-          var b = CRR.branches.filter(function (x) {
-            return x.slug === slug;
-          })[0];
-          if (!b && !slug)
-            b =
-              CRR.branches.filter(isCurrent)[0] ||
-              CRR.branches.slice().sort(function (a, c) {
-                return String(c.updated_at).localeCompare(String(a.updated_at));
-              })[0];
-          if (!b)
-            return "<h1>Branch</h1><p class='muted'>No reviewed branch found.</p>";
-          var h =
-            '<p class="small muted"><a href="#/">Overview</a> / branch</p><h1><code>' +
-            esc(b.branch) +
-            "</code>" +
-            (isCurrent(b) ? ' <span class="badge">current</span>' : "") +
-            "</h1>";
-          h +=
-            '<p class="small muted">base <code>' +
-            esc(b.base || "—") +
-            "</code> · " +
-            reviewRuns(b).length +
-            " review(s) · last " +
-            fmtDate(b.last_review && b.last_review.at) +
-            (isLocal(b) ? "" : " · historical") +
-            "</p>";
-          h += verdictBlock(b);
-          if (b.suggestions && b.suggestions.length)
-            h += alertsHtml(
-              b.suggestions.map(function (s) {
-                return { cls: "info", html: "💡 " + inl(s.text) };
-              }),
-            );
-          var s = b.summary;
-          if (s) {
-            h +=
-              '<div class="sec"><h2>Summary</h2>' +
-              md(s.text || "") +
-              ((s.highlights || []).length
-                ? '<ul class="clean">' +
-                  s.highlights
-                    .map(function (x) {
-                      return (
-                        '<li><span class="badge">' +
-                        esc(x.type) +
-                        "</span> " +
-                        inl(x.text) +
-                        "</li>"
-                      );
-                    })
-                    .join("") +
-                  "</ul>"
-                : "") +
-              "</div>";
-          }
-          var side = "";
-          if (b.commit_message)
-            side +=
-              '<div class="card"><h3 style="margin-top:0">Proposed commit message</h3><pre class="code" style="white-space:pre-wrap">' +
-              esc(b.commit_message) +
-              "</pre>" +
-              copyBtn(b.commit_message) +
-              "</div>";
-          if (b.effort)
-            side +=
-              '<div class="card"><h3 style="margin-top:0">Estimated review effort</h3><div style="font-size:22px;font-weight:700">' +
-              esc(b.effort.score) +
-              '<span class="muted" style="font-size:14px">/5' +
-              (b.effort.minutes
-                ? " · ~" + esc(b.effort.minutes) + " min"
-                : "") +
-              "</span></div>" +
-              md(b.effort.reason || "") +
-              "</div>";
-          if ((b.checks_latest || []).length) {
-            var ic = {
-              pass: '<span class="ok">✓</span>',
-              warn: '<span class="warn">!</span>',
-              fail: '<span class="bad">✕</span>',
-              "n/a": '<span class="muted">–</span>',
-            };
-            var order = { fail: 0, warn: 1, pass: 2, "n/a": 3 };
-            var rows = b.checks_latest.slice().sort(function (x, y) {
-              return order[x.status] - order[y.status];
-            });
-            var li = function (r) {
-              var c = checkName(r.id);
-              return (
-                "<li>" +
-                ic[r.status] +
-                " " +
-                esc(c.name || r.id) +
-                (c.blocking ? ' <span class="badge">blocking</span>' : "") +
-                (r.note && r.status !== "pass" && r.status !== "n/a"
-                  ? '<div class="muted">' + inl(r.note) + "</div>"
-                  : "") +
-                "</li>"
-              );
-            };
-            var issues = rows.filter(function (r) {
-              return r.status === "fail" || r.status === "warn";
-            });
-            var rest = rows.filter(function (r) {
-              return r.status === "pass" || r.status === "n/a";
-            });
-            var np = rest.filter(function (r) {
-              return r.status === "pass";
-            }).length;
-            side +=
-              '<div class="card"><h3 style="margin-top:0">Checks</h3><ul class="clean small">' +
-              (issues.length
-                ? issues.map(li).join("")
-                : '<li class="ok">✓ No check failing or warning</li>') +
-              "</ul>" +
-              '<details><summary class="small muted">' +
-              np +
-              " passed · " +
-              (rest.length - np) +
-              ' not applicable</summary><ul class="clean small">' +
-              rest.map(li).join("") +
-              "</ul></details></div>";
-          }
-          if (side) h += '<div class="grid">' + side + "</div>";
-          var w = b.walkthrough;
-          if (w) {
-            h += '<div class="sec"><h2>Walkthrough</h2>' + md(w.overview || "");
-            if ((w.changes || []).length)
-              h +=
-                '<div class="scroll"><table><thead><tr><th>Cohort / files</th><th>Summary</th></tr></thead><tbody>' +
-                w.changes
-                  .map(function (c) {
-                    return (
-                      "<tr><td>" +
-                      (c.cohort ? "<b>" + inl(c.cohort) + "</b><br>" : "") +
-                      (c.files || [])
-                        .map(function (f) {
-                          return "<code>" + esc(f) + "</code>";
-                        })
-                        .join("<br>") +
-                      "</td><td>" +
-                      md(c.summary) +
-                      "</td></tr>"
-                    );
-                  })
-                  .join("") +
-                "</tbody></table></div>";
-            h += "</div>";
-          }
-          if (b.diagram)
-            h +=
-              '<div class="sec"><h2>Sequence diagram</h2><div class="scroll"><pre class="mermaid">' +
-              esc(b.diagram) +
-              "</pre></div></div>";
-          var open = openC(b).sort(function (x, y) {
-            return (
-              SEV.indexOf(x.severity) - SEV.indexOf(y.severity) ||
-              x.file.localeCompare(y.file)
-            );
-          });
-          var act = open.filter(function (c) {
-              return c.severity !== "nitpick";
-            }),
-            nits = open.filter(function (c) {
-              return c.severity === "nitpick";
-            });
-          var closed = (b.comments || []).filter(function (c) {
-            return c.status !== "open";
-          });
-          var allPrompt = open.length
-            ? "Verify each finding against the current code and only fix it if it is still valid.\n\n" +
-              open
-                .map(function (c) {
-                  return (
-                    "- [" +
-                    c.severity +
-                    "] " +
-                    (c.agent_prompt || "In " + loc(c) + ": " + c.title)
-                  );
-                })
-                .join("\n")
-            : "";
-          var counts = bySev(open);
-          h +=
-            '<div class="sec" id="comments"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><h2>Comments <span class="n">' +
-            act.length +
-            "</span></h2>" +
-            (open.length
-              ? copyBtn(allPrompt, "🤖 Copy prompt for all open comments")
-              : "") +
-            "</div>";
-          h +=
-            '<div class="chips"><button class="chip on" data-f="all">All · ' +
-            act.length +
-            "</button>" +
-            ["critical", "major", "minor"]
-              .map(function (s) {
-                return (
-                  '<button class="chip" data-f="' +
-                  s +
-                  '"><span class="sev-' +
-                  s +
-                  '">●</span> ' +
-                  counts[s] +
-                  " " +
-                  SEV_LABEL[s] +
-                  "</button>"
-                );
-              })
-              .join("") +
-            "</div>";
-          if (!act.length)
-            h += '<p class="empty">No open actionable comments.</p>';
-          var cur = null;
-          act.forEach(function (c) {
-            if (c.file !== cur) {
-              cur = c.file;
-              h +=
-                '<h3 class="file" data-file>📄 <code>' +
-                esc(cur) +
-                "</code></h3>";
-            }
-            h += commentHtml(c);
-          });
-          h += "</div>";
-          if (nits.length)
-            h +=
-              '<div class="sec"><details class="group"><summary><h2>Nitpicks <span class="n">' +
-              nits.length +
-              "</span></h2></summary>" +
-              nits
-                .map(function (c) {
-                  return commentHtml(c);
-                })
-                .join("") +
-              "</details></div>";
-          if (closed.length)
-            h +=
-              '<div class="sec"><details class="group"><summary><h2>Resolved, dismissed & excepted <span class="n">' +
-              closed.length +
-              "</span></h2></summary>" +
-              closed
-                .map(function (c) {
-                  return commentHtml(c, true);
-                })
-                .join("") +
-              "</details></div>";
-          h +=
-            '<div class="sec"><h2>Review timeline</h2><div class="tl">' +
-            (b.runs || [])
-              .slice()
-              .reverse()
-              .map(function (r) {
-                var c = r.counts || {};
-                return (
-                  '<div class="ev ' +
-                  (r.verdict || "") +
-                  '"><b>#' +
-                  r.n +
-                  "</b> · " +
-                  fmtDate(r.at) +
-                  ' · <span class="badge">' +
-                  esc(r.kind) +
-                  "</span> " +
-                  verdictBadge(r.verdict) +
-                  '<div class="small muted">+' +
-                  (c["new"] || 0) +
-                  " new · " +
-                  (c.resolved || 0) +
-                  " resolved · " +
-                  (c.dismissed || 0) +
-                  " dismissed · " +
-                  (c.excepted || 0) +
-                  " excepted · " +
-                  (c.reopened || 0) +
-                  " reopened" +
-                  (r.files_reviewed != null
-                    ? " · " + r.files_reviewed + " file(s)"
-                    : "") +
-                  (r.head
-                    ? ' · <span class="mono">' +
-                      esc(String(r.head).slice(0, 8)) +
-                      "</span>"
-                    : "") +
-                  (r.agent ? " · " + esc(r.agent) : "") +
-                  "</div>" +
-                  (r.note
-                    ? '<div class="small">' + inl(r.note) + "</div>"
-                    : "") +
-                  "</div>"
-                );
-              })
-              .join("") +
-            "</div></div>";
-          return h;
-        }
-
-        function stdCard(s) {
-          var viol = 0;
-          CRR.branches.forEach(function (b) {
-            (b.comments || []).forEach(function (c) {
-              if (c.standard === s.id) viol++;
-            });
-          });
-          var lvl =
-            {
-              required: "sev-major",
-              recommended: "sev-minor",
-              preference: "sev-nitpick",
-            }[s.level] || "";
-          var h =
-            '<div class="std" id="' +
-            s.id +
-            '" data-status="' +
-            esc(s.status) +
-            '" data-cat="' +
-            esc(s.category) +
-            '" data-q="' +
-            esc((s.id + " " + s.title + " " + s.description).toLowerCase()) +
-            '"><div class="head">' +
-            '<span class="mono muted">' +
-            s.id +
-            '</span><span class="t">' +
-            inl(s.title) +
-            '</span><span class="badge ' +
-            lvl +
-            '">' +
-            esc(s.level) +
-            '</span><span class="badge">' +
-            esc(s.status) +
-            '</span><span class="badge">' +
-            esc(s.category) +
-            "</span>" +
-            '<span class="badge muted">' +
-            esc(s.origin) +
-            "</span>" +
-            (s.divergence ? '<span class="badge bad">divergent</span>' : "") +
-            "</div>";
-          h += md(s.description);
-          var meta = [];
-          if (s.source && s.source.file)
-            meta.push(
-              "Source: <code>" +
-                esc(s.source.file) +
-                "</code>" +
-                (s.source.detail ? " — " + inl(s.source.detail) : ""),
-            );
-          if (s.scope && (s.scope.paths || []).length)
-            meta.push(
-              "Scope: " +
-                s.scope.paths
-                  .map(function (p) {
-                    return "<code>" + esc(p) + "</code>";
-                  })
-                  .join(" "),
-            );
-          if (s.prevalence) meta.push("Prevalence: " + inl(s.prevalence));
-          if (s.replaced_by)
-            meta.push(
-              'Replaced by <a href="#/standards/' +
-                esc(s.replaced_by) +
-                '">' +
-                esc(s.replaced_by) +
-                "</a>",
-            );
-          if (s.migration)
-            meta.push(
-              "Migration: <b>" +
-                esc(s.migration.remaining) +
-                "</b> usage(s) of the old pattern remaining (" +
-                day(s.migration.measured_at) +
-                ")",
-            );
-          meta.push(viol + " comment(s) cited this standard");
-          h += '<div class="small muted">' + meta.join(" · ") + "</div>";
-          if (s.divergence)
-            h += '<div class="alert">' + inl(s.divergence.note) + "</div>";
-          if ((s.examples || []).length)
-            h +=
-              '<div class="lbl">Examples</div><ul class="clean small">' +
-              s.examples
-                .map(function (e) {
-                  return (
-                    "<li><code>" +
-                    esc(e.file || e) +
-                    "</code>" +
-                    (e.note ? " — " + inl(e.note) : "") +
-                    "</li>"
-                  );
-                })
-                .join("") +
-              "</ul>";
-          if ((s.exceptions || []).length)
-            h +=
-              '<div class="lbl">Exceptions</div><ul class="clean small">' +
-              s.exceptions
-                .map(function (e) {
-                  return (
-                    "<li><code>" +
-                    esc(e.path) +
-                    "</code> — " +
-                    inl(e.reason) +
-                    (e.expires
-                      ? ' <span class="badge ' +
-                        (excState(e) === "expired" ? "bad" : "") +
-                        '">' +
-                        (excState(e) === "expired" ? "expired " : "until ") +
-                        esc(e.expires) +
-                        "</span>"
-                      : "") +
-                    "</li>"
-                  );
-                })
-                .join("") +
-              "</ul>";
-          var log = CRR.stdlog
-            .filter(function (l) {
-              return l.standard === s.id;
-            })
-            .sort(function (a, b) {
-              return logKey(b).localeCompare(logKey(a));
-            });
-          if (log.length)
-            h +=
-              '<details style="margin-top:6px"><summary class="small muted">History (' +
-              log.length +
-              ")</summary>" +
-              '<ul class="clean small">' +
-              log
-                .map(function (l) {
-                  return (
-                    "<li>" +
-                    fmtDate(l.at) +
-                    " · <b>" +
-                    esc(l.action) +
-                    "</b>" +
-                    (l.reason ? " — " + inl(l.reason) : "") +
-                    (l.branch
-                      ? ' <span class="muted">(' +
-                        esc(l.branch) +
-                        (l.run ? " #" + l.run : "") +
-                        ")</span>"
-                      : "") +
-                    "</li>"
-                  );
-                })
-                .join("") +
-              "</ul></details>";
-          return h + "</div>";
-        }
-
-        function viewStandards(focus, filter) {
-          var st = CRR.standards.slice().sort(function (a, b) {
-            return (
-              a.category.localeCompare(b.category) ||
-              a.title.localeCompare(b.title)
-            );
-          });
-          var count = function (k) {
-            return st.filter(function (s) {
-              return s.status === k;
-            }).length;
-          };
-          var cats = Array.from(
-            new Set(
-              st.map(function (s) {
-                return s.category;
-              }),
-            ),
-          ).sort();
-          var h =
-            "<h1>Standards</h1><p class='small muted'>The project's catalog. Proposed standards are not enforced until you validate them.</p>" +
-            alertsHtml(globalAlerts());
-          h +=
-            '<div class="chips">' +
-            ["active", "proposed", "deprecated", "rejected", "all"]
-              .map(function (k) {
-                return (
-                  '<button class="chip' +
-                  ((filter || "active") === k ? " on" : "") +
-                  '" data-sf="' +
-                  k +
-                  '">' +
-                  k +
-                  (k !== "all" ? " · " + count(k) : "") +
-                  "</button>"
-                );
-              })
-              .join("") +
-            '<select id="scat"><option value="">All categories</option>' +
-            cats
-              .map(function (c) {
-                return "<option>" + esc(c) + "</option>";
-              })
-              .join("") +
-            '</select> <input class="search" id="sq" placeholder="Search…"></div>';
-          h +=
-            '<div id="stdlist">' +
-            (st.length
-              ? st.map(stdCard).join("")
-              : '<p class="empty">No standards yet. Ask your agent to analyze the project standards.</p>') +
-            "</div>";
-          var log = CRR.stdlog
-            .slice()
-            .sort(function (a, b) {
-              return logKey(b).localeCompare(logKey(a));
-            })
-            .slice(0, 30);
-          h +=
-            '<div class="sec"><h2>Recent changes</h2>' +
-            (log.length
-              ? '<ul class="clean small">' +
-                log
-                  .map(function (l) {
-                    var s = stdById(l.standard);
-                    return (
-                      "<li>" +
-                      fmtDate(l.at) +
-                      ' · <a href="#/standards/' +
-                      l.standard +
-                      '">' +
-                      l.standard +
-                      "</a> " +
-                      esc(s ? s.title : "") +
-                      " · <b>" +
-                      esc(l.action) +
-                      "</b>" +
-                      (l.reason ? " — " + inl(l.reason) : "") +
-                      "</li>"
-                    );
-                  })
-                  .join("") +
-                "</ul>"
-              : '<p class="empty">No changes yet.</p>') +
-            "</div>";
-          setTimeout(function () {
-            applyStdFilter(focus ? "all" : filter || "active");
-            if (focus) {
-              var el = document.getElementById(focus);
-              if (el) {
-                el.scrollIntoView({ block: "center" });
-                el.style.boxShadow = "0 0 0 2px var(--accent)";
-              }
-            }
-          }, 0);
-          return h;
-        }
-        function applyStdFilter(f) {
-          var cat = (document.getElementById("scat") || {}).value || "",
-            q = (
-              (document.getElementById("sq") || {}).value || ""
-            ).toLowerCase();
-          document.querySelectorAll(".chip[data-sf]").forEach(function (c) {
-            c.classList.toggle("on", c.dataset.sf === f);
-          });
-          document.querySelectorAll("#stdlist .std").forEach(function (el) {
-            el.classList.toggle(
-              "hidden",
-              (f !== "all" && el.dataset.status !== f) ||
-                (cat && el.dataset.cat !== cat) ||
-                (q && el.dataset.q.indexOf(q) < 0),
-            );
-          });
-        }
-
         function allRuns() {
           var out = [];
           CRR.branches.forEach(function (b) {
@@ -1933,7 +2125,10 @@
           });
           var runs = allRuns();
           var h =
-            "<h1>Insights</h1><p class='small muted'>Computed in your browser from all review data visible in this branch (main + merged branches + this one).</p>";
+            "<h1>Insights</h1><p class='meta'>Computed in your browser from all review data visible in this branch (main + merged branches + this one).</p>" +
+            '<div class="sec"><h2>Branches</h2>' +
+            branchTable() +
+            "</div>";
 
           // --- Now
           var blocked = bs.filter(function (b) {
@@ -2331,115 +2526,6 @@
             "</b></div>"
           );
         }
-
-        function viewHelp() {
-          var h =
-            "<h1>Help</h1><p class='small muted'>How to run, read and act on code reviews with the " +
-            esc((CRR.local && CRR.local.repo) || "acanimal") +
-            " skill, and how to use this panel.</p>";
-          h += '<div class="sec"><h2>What is this?</h2>';
-          h += md(
-            "A **local code review** of the current branch or worktree, in the spirit of CodeRabbit: whenever you ask your coding agent to review code, it applies the **project's own standards**, keeps the full review history in the repository and maintains this HTML panel.",
-          );
-          h +=
-            '<p class="small muted">All data lives in <code>.code-review/</code> inside the repo (meant to be committed) and is rendered here. No server needed — just open <code>.code-review/index.html</code>.</p>';
-          h += "</div>";
-          h += '<div class="sec"><h2>Running a review</h2>';
-          h += md([
-            "Just ask your coding agent in plain language:",
-            "",
-            "- “Review my changes”, “review the branch”, “review this PR”, “full re-review”, “fix the blockers”, “explain ACR-123”, “manage standards”, “open the panel”.",
-            "",
-            "The agent resolves the diff (`CRR context`), reviews it against the project standards, writes the run and applies it (`CRR apply`), then reports the verdict and blockers.",
-          ].join("\n"));
-          h +=
-            '<p class="small muted">Modes: `auto` (incremental since the last review of the branch when possible), `full` (full re-review of pending changes) and `branch` (whole branch).</p>';
-          h += "</div>";
-          h += '<div class="sec"><h2>Reading the verdict</h2>';
-          h += md([
-            "Per branch, the panel shows a verdict:",
-            "",
-            "- ✓ **Ready to commit** — no open critical/major finding and no failing blocking check.",
-            "- ✕ **Blocked** — open critical/major findings or a failing blocking check. Not ready to commit until they are fixed or properly dismissed.",
-            "- Open findings are listed by severity — critical, major, minor, nitpick. Critical and major block; minor and nitpick do not.",
-          ].join("\n"));
-          h += "</div>";
-          h += '<div class="sec"><h2>Reading findings</h2>';
-          h += md([
-            "Each finding is a comment raised during a review, with:",
-            "",
-            "- **Severity** — `critical` (breaks production, data loss, security issue, crash) and `major` (real bug or required-standard violation) block the commit; `minor` (recommended-standard violation) and `nitpick` (preference-standard violation) do not.",
-            "- **Category** — `bug`, `security`, `performance`, `maintainability`, `style`, `docs`, `tests`, `architecture`, `other`.",
-            "- **Standard** — linked `STD-xxxx` when the finding violates a project standard; see the Standards tab.",
-            "- **Location** — repo-relative file and line range, in the current version of the file.",
-            "- **Suggested change** — unified diff (`-` / `+`) when the fix is local and confident.",
-            "- **🤖 Prompt for AI agents** — self-contained instruction to hand over to another coding agent; use the copy button to grab it.",
-          ].join("\n"));
-          h += "</div>";
-          h += '<div class="sec"><h2>Acting on findings</h2>';
-          h += md([
-            "Findings carry an ID like `ACR-1a2b3c`. Typical requests:",
-            "",
-            "- **Explain** `ACR-1a2b3c` — the agent reads the code and answers in chat; no data change.",
-            "- **Fix** `ACR-1a2b3c`, “fix the blockers”, “apply the suggestions” — the agent shows the proposed change (diff) and asks for confirmation; only what is confirmed is applied, then the branch is re-reviewed.",
-            "- **Dismiss** `ACR-1a2b3c` — mark as not applicable, with a required reason.",
-            "- **Exception** — “`ACR-1a2b3c` is fine in `src/legacy/`”, “ignore `STD-1a2b` here” — adds a time-boxed exception (path, reason, optional expiry).",
-          ].join("\n"));
-          h += "</div>";
-          h += '<div class="sec"><h2>Managing standards</h2>';
-          h += md([
-            "The standards catalog is stored in `.code-review/` and managed through the agent: proposed standards are not enforced until validated; levels map to severities (`required` → `major`, `recommended` → `minor`, `preference` → `nitpick`).",
-            "",
-            "Typical requests: “show pending standards”, “in this project we do Y” (record or change a standard), “deprecate `STD-1a2b` in favour of `STD-9f8e`” (with migration tracking).",
-          ].join("\n"));
-          h += "</div>";
-          h += '<div class="sec"><h2>Quick reference</h2>';
-          h += md([
-            "```",
-            "CRR init                         create/upgrade .code-review/",
-            "CRR context [--mode auto|pending|full|branch]   resolve the diff to review",
-            "CRR apply <run.json>             record a review or a status change",
-            "CRR std <ops.json>                manage standards / exceptions",
-            "CRR list | CRR show <ID> | CRR standards   read data",
-            "CRR config [--language xx] [--base REF] [--check ID --enabled|--blocking true|false]",
-            "CRR repo-stats                   repo size / standards analysis",
-            "CRR index                         rebuild the panel index",
-            "```",
-          ].join("\n"));
-          h +=
-            '<p class="small muted">Full command list and file formats: <code>scripts/crr.py --help</code>, <code>references/run-schema.md</code> and <code>references/standards.md</code>.</p>';
-          h += "</div>";
-          return h;
-        }
-
-        // ---------------------------------------------------------------- router
-        function route() {
-          var hash = location.hash.replace(/^#\/?/, ""),
-            q = "";
-          if (hash.indexOf("?") >= 0) {
-            q = hash.slice(hash.indexOf("?") + 1);
-            hash = hash.slice(0, hash.indexOf("?"));
-          }
-          var parts = hash.split("/").map(decodeURIComponent),
-            v = parts[0] || "home";
-          COPY = {};
-          var html;
-          if (v === "branch") html = viewBranch(parts[1]);
-          else if (v === "standards")
-            html = viewStandards(parts[1], (/(?:^|&)f=(\w+)/.exec(q) || [])[1]);
-          else if (v === "insights") html = viewInsights();
-          else if (v === "help") html = viewHelp();
-          else {
-            v = "home";
-            html = viewHome();
-          }
-          app.innerHTML = html;
-          document.querySelectorAll("#nav a").forEach(function (a) {
-            a.classList.toggle("on", a.dataset.v === v);
-          });
-          if (v !== "standards" || !parts[1]) window.scrollTo(0, 0);
-          renderMermaid();
-        }
         var mermaidP = null;
         function renderMermaid() {
           var els = document.querySelectorAll("pre.mermaid");
@@ -2472,9 +2558,1814 @@
             });
         }
 
+        // ---------------------------------------------------------------- icons
+        var ICONS = {
+          check: '<path d="M20 6 9 17l-5-5"/>',
+          x: '<path d="M18 6 6 18M6 6l12 12"/>',
+          alert: '<path d="M12 8v5M12 17h.01"/>',
+          dash: '<path d="M7 12h10"/>',
+          bulb: '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6M10 22h4"/>',
+          bot: '<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/>',
+        };
+        function ico(name) {
+          return (
+            '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+            ICONS[name] +
+            "</svg>"
+          );
+        }
+
+        // ---------------------------------------------------------------- v2 state
+        var TABS = ["findings", "change", "checks", "history"];
+        var TAB_LABEL = {
+          findings: "Findings",
+          change: "Change",
+          checks: "Checks",
+          history: "History",
+        };
+        var UI = {
+          slug: null,
+          sev: "all",
+          nits: false,
+          cur: null,
+          curOpen: false,
+          stdF: "active",
+          stdCat: "",
+          stdQ: "",
+          stdSel: null,
+        };
+        var CUR = { view: null };
+        var PROMPTS = {};
+        var spy = null;
+
+        function repoName() {
+          return (CRR.local && CRR.local.repo) || "";
+        }
+        function tinl(s) {
+          // inline markup without links, safe inside buttons and summaries
+          return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+        }
+        function qp(q, k) {
+          var m = new RegExp("(?:^|&)" + k + "=([^&]*)").exec(q || "");
+          return m ? decodeURIComponent(m[1]) : null;
+        }
+        function nonNit(c) {
+          return c.severity !== "nitpick";
+        }
+        function isBlocking(c) {
+          return c.severity === "critical" || c.severity === "major";
+        }
+        function blockersOf(b) {
+          var cs = openC(b).filter(isBlocking);
+          var checks = (b.checks_latest || []).filter(function (r) {
+            return r.status === "fail" && checkName(r.id).blocking;
+          });
+          return { comments: cs, checks: checks, n: cs.length + checks.length };
+        }
+        function stateOf(b) {
+          return !b.verdict ? "none" : blockersOf(b).n ? "blocked" : "ready";
+        }
+        function sortedBranches() {
+          return CRR.branches.slice().sort(function (a, b) {
+            return (
+              isCurrent(b) - isCurrent(a) ||
+              isLocal(b) - isLocal(a) ||
+              String(b.updated_at).localeCompare(String(a.updated_at))
+            );
+          });
+        }
+        function findBranch(slug) {
+          return CRR.branches.filter(function (x) {
+            return x.slug === slug;
+          })[0];
+        }
+        function bHref(b, tab, q) {
+          return (
+            "#/b/" +
+            encodeURIComponent(b.slug) +
+            (tab ? "/" + tab : "") +
+            (q ? "?" + q : "")
+          );
+        }
+        function lines(c) {
+          if (!c.line_start) return "";
+          return (
+            "L" +
+            c.line_start +
+            (c.line_end && c.line_end !== c.line_start ? "–" + c.line_end : "")
+          );
+        }
+        function promptOf(c) {
+          return (
+            c.agent_prompt ||
+            "In " + loc(c) + ": " + c.title + ". " + (c.body || "")
+          );
+        }
+        function proposedCount() {
+          return CRR.standards.filter(function (s) {
+            return s.status === "proposed";
+          }).length;
+        }
+        function plural(n, w) {
+          return n + " " + w + (n === 1 ? "" : "s");
+        }
+
+        // ---------------------------------------------------------------- navigation
+        function renderNav(v, slug) {
+          var bs = sortedBranches(),
+            prop = proposedCount();
+          var h =
+            '<a class="brand" href="#/">Code review' +
+            (repoName() ? "<span>" + esc(repoName()) + "</span>" : "") +
+            '</a><div class="side-h">Branches</div><nav>';
+          bs.forEach(function (b) {
+            var n = openC(b).filter(nonNit).length;
+            h +=
+              '<a class="bl' +
+              (v === "branch" && b.slug === slug ? " on" : "") +
+              (isLocal(b) ? "" : " hist") +
+              '" href="' +
+              bHref(b) +
+              '" title="' +
+              esc(b.branch + (isLocal(b) ? "" : " (historical)")) +
+              '"><i class="dot ' +
+              stateOf(b) +
+              '"></i><span class="bn">' +
+              esc(b.branch) +
+              "</span>" +
+              (isCurrent(b) ? '<span class="cur">current</span>' : "") +
+              (n ? '<span class="bc" title="open findings">' + n + "</span>" : "") +
+              "</a>";
+          });
+          var ghost =
+            CRR.local && CRR.local.current_branch && !bs.some(isCurrent);
+          if (ghost)
+            h +=
+              '<div class="bl ghost" title="Not reviewed yet"><i class="dot"></i><span class="bn">' +
+              esc(CRR.local.current_branch) +
+              '</span><span class="cur">not reviewed</span></div>';
+          if (!bs.length && !ghost)
+            h += '<p class="side-empty">No reviews yet</p>';
+          h +=
+            '</nav><div class="side-h">Project</div><nav>' +
+            pl(
+              "standards",
+              "#/standards",
+              "Standards",
+              prop
+                ? '<span class="bc warn" title="proposed standards waiting for validation">' +
+                    prop +
+                    " to validate</span>"
+                : "",
+            ) +
+            pl("insights", "#/insights", "Insights", "") +
+            pl("help", "#/help", "Help", "") +
+            "</nav>";
+          side.innerHTML = h;
+
+          var cur = v === "branch" ? "b:" + slug : v;
+          msel.innerHTML =
+            '<optgroup label="Branches">' +
+            bs
+              .map(function (b) {
+                var s = stateOf(b);
+                return (
+                  '<option value="' +
+                  bHref(b) +
+                  '"' +
+                  (cur === "b:" + b.slug ? " selected" : "") +
+                  ">" +
+                  (s === "blocked" ? "✕ " : s === "ready" ? "✓ " : "· ") +
+                  esc(b.branch) +
+                  (isCurrent(b) ? " (current)" : "") +
+                  "</option>"
+                );
+              })
+              .join("") +
+            '</optgroup><optgroup label="Project">' +
+            [
+              ["standards", "#/standards", "Standards"],
+              ["insights", "#/insights", "Insights"],
+              ["help", "#/help", "Help"],
+            ]
+              .map(function (x) {
+                return (
+                  '<option value="' +
+                  x[1] +
+                  '"' +
+                  (cur === x[0] ? " selected" : "") +
+                  ">" +
+                  x[2] +
+                  "</option>"
+                );
+              })
+              .join("") +
+            "</optgroup>";
+
+          function pl(k, href, label, extra) {
+            return (
+              '<a class="pl' +
+              (v === k ? " on" : "") +
+              '" href="' +
+              href +
+              '"><span class="bn2">' +
+              label +
+              "</span>" +
+              extra +
+              "</a>"
+            );
+          }
+        }
+
+        // ---------------------------------------------------------------- branch
+        function viewBranch(slug, tab, q) {
+          var b = findBranch(slug);
+          if (!b)
+            return (
+              '<h1>Branch not found</h1><p class="muted">No review data for <code>' +
+              esc(slug) +
+              '</code>. <a href="#/">Go to the current branch →</a></p>'
+            );
+          if (UI.slug !== b.slug) {
+            UI.slug = b.slug;
+            UI.sev = "all";
+            UI.nits = false;
+            UI.cur = null;
+            UI.curOpen = false;
+          }
+          var open = openC(b),
+            act = open.filter(nonNit);
+          var closed = (b.comments || []).filter(function (c) {
+            return c.status !== "open";
+          });
+          var issues = (b.checks_latest || []).filter(function (r) {
+            return r.status === "fail" || r.status === "warn";
+          });
+          var focus = qp(q, "id"),
+            fc = focus
+              ? open.filter(function (c) {
+                  return c.id === focus;
+                })[0]
+              : null;
+          if (fc) {
+            UI.cur = fc.id;
+            UI.curOpen = true;
+            UI.sev = "all";
+            if (fc.severity === "nitpick") UI.nits = true;
+            tab = "findings";
+          }
+          if (TABS.indexOf(tab) < 0) tab = open.length ? "findings" : "change";
+          CUR = { view: "branch", b: b, tab: tab, open: open };
+          var cnt = {
+            findings: act.length,
+            change: null,
+            checks: issues.length,
+            history: reviewRuns(b).length,
+          };
+          var bad = {
+            findings: act.some(isBlocking),
+            checks: issues.some(function (r) {
+              return r.status === "fail";
+            }),
+          };
+          var h = branchHeader(b);
+          h +=
+            '<div class="tabs" role="tablist">' +
+            TABS.map(function (t, i) {
+              return (
+                '<a class="tab' +
+                (t === tab ? " on" : "") +
+                '" role="tab" aria-selected="' +
+                (t === tab) +
+                '" href="' +
+                bHref(b, t) +
+                '" title="Shortcut: ' +
+                (i + 1) +
+                '">' +
+                TAB_LABEL[t] +
+                (cnt[t] != null
+                  ? '<span class="tn' +
+                    (bad[t] ? " bad" : "") +
+                    '">' +
+                    cnt[t] +
+                    "</span>"
+                  : "") +
+                "</a>"
+              );
+            }).join("") +
+            "</div>";
+          h +=
+            '<div class="tabbody">' +
+            (tab === "findings"
+              ? findingsTab(b, open)
+              : tab === "change"
+                ? changeTab(b)
+                : tab === "checks"
+                  ? checksTab(b)
+                  : historyTab(b, closed)) +
+            "</div>";
+          return h;
+        }
+
+        function branchHeader(b) {
+          var h =
+            '<header class="bh" id="bh"><div class="bh-top"><h1><code>' +
+            esc(b.branch) +
+            "</code></h1>" +
+            (isCurrent(b) ? '<span class="badge cur-b">current</span>' : "") +
+            (isLocal(b) ? "" : '<span class="badge muted">historical</span>') +
+            '</div><p class="meta">base <code>' +
+            esc(b.base || "—") +
+            "</code> · " +
+            plural(reviewRuns(b).length, "review") +
+            " · last " +
+            fmtDate(b.last_review && b.last_review.at) +
+            "</p>" +
+            verdictStrip(b);
+          if (b.commit_message)
+            h +=
+              '<div class="withcopy"><details class="commit"><summary><span class="lbl3">Commit message</span><span class="cm1 mono">' +
+              esc(String(b.commit_message).split("\n")[0]) +
+              '</span></summary><pre class="code">' +
+              esc(b.commit_message) +
+              "</pre></details>" +
+              copyBtn(b.commit_message) +
+              "</div>";
+          if ((b.suggestions || []).length)
+            h += alertsHtml(
+              b.suggestions.map(function (s) {
+                return { cls: "info", html: ico("bulb") + "<span>" + inl(s.text) + "</span>" };
+              }),
+            );
+          return h + "</header>";
+        }
+
+        function verdictStrip(b) {
+          if (!b.verdict)
+            return '<div class="verdict none"><span class="vi"></span><div class="vt">Not reviewed yet</div></div>';
+          var k = blockersOf(b);
+          if (!k.n)
+            return '<div class="verdict ready"><span class="vi">' + ico("check") + '</span><div><div class="vt">Ready to commit</div><div class="vs">No open critical or major findings and no blocking check failing.</div></div></div>';
+          return (
+            '<div class="verdict blocked"><span class="vi">' +
+            ico("x") +
+            '</span><div><div class="vt">' +
+            plural(k.n, "blocker") +
+            ' — not ready to commit</div><div class="bks">' +
+            k.comments
+              .map(function (c) {
+                return (
+                  '<a class="bk" href="' +
+                  bHref(b, "findings", "id=" + c.id) +
+                  '" title="' +
+                  esc(c.title) +
+                  '"><span class="sev sev-' +
+                  c.severity +
+                  '"></span>' +
+                  esc(c.id) +
+                  "</a>"
+                );
+              })
+              .join("") +
+            k.checks
+              .map(function (r) {
+                return (
+                  '<a class="bk" href="' +
+                  bHref(b, "checks") +
+                  '">check: ' +
+                  esc(checkName(r.id).name || r.id) +
+                  "</a>"
+                );
+              })
+              .join("") +
+            "</div></div></div>"
+          );
+        }
+
+        // ---------------------------------------------------------------- findings
+        function visibleFindings(open) {
+          return open.filter(function (c) {
+            return c.severity === "nitpick"
+              ? UI.nits
+              : UI.sev === "all" || UI.sev === c.severity;
+          });
+        }
+        function groupByFile(list) {
+          list = list.slice().sort(function (x, y) {
+            return (
+              SEV.indexOf(x.severity) - SEV.indexOf(y.severity) ||
+              x.file.localeCompare(y.file) ||
+              (x.line_start || 0) - (y.line_start || 0)
+            );
+          });
+          var order = [],
+            g = {};
+          list.forEach(function (c) {
+            if (!g[c.file]) {
+              g[c.file] = [];
+              order.push(c.file);
+            }
+            g[c.file].push(c);
+          });
+          return order.map(function (f) {
+            return { file: f, items: g[f] };
+          });
+        }
+
+        function findingsTab(b, open) {
+          if (!open.length)
+            return (
+              '<div class="fempty"><b>No open findings</b>' +
+              (b.verdict
+                ? "Everything raised in previous reviews is closed. See History for the details."
+                : "This branch has not been reviewed yet.") +
+              "</div>"
+            );
+          var c = bySev(open);
+          var h =
+            '<div class="ftool"><div class="chips">' +
+            chip("all", "All", open.length - c.nitpick) +
+            ["critical", "major", "minor"]
+              .map(function (s) {
+                return chip(s, SEV_LABEL[s], c[s]);
+              })
+              .join("") +
+            (c.nitpick
+              ? '<button class="chip' +
+                (UI.nits ? " on" : "") +
+                '" data-nits><span class="d" style="background:var(--nitpick)"></span>' +
+                (UI.nits ? "Hide " : "Show ") +
+                plural(c.nitpick, "nitpick") +
+                "</button>"
+              : "") +
+            '</div><span class="kbdhint"><kbd>j</kbd> <kbd>k</kbd> move · <kbd>Enter</kbd> open · <kbd>c</kbd> copy prompt</span></div>';
+          return h + '<div id="flist">' + findingsList(open) + "</div>";
+
+          function chip(k, label, n) {
+            return (
+              '<button class="chip' +
+              (UI.sev === k ? " on" : "") +
+              '" data-f="' +
+              k +
+              '"' +
+              (n || k === "all" ? "" : " disabled") +
+              ">" +
+              (k !== "all"
+                ? '<span class="d" style="background:' + SEV_COLOR[k] + '"></span>'
+                : "") +
+              label +
+              " · " +
+              n +
+              "</button>"
+            );
+          }
+        }
+
+        function findingsList(open) {
+          var vis = visibleFindings(open);
+          if (!vis.length)
+            return '<div class="fempty">No findings match this filter.</div>';
+          var groups = groupByFile(vis),
+            flat = [];
+          groups.forEach(function (g) {
+            g.items.forEach(function (c) {
+              flat.push(c.id);
+            });
+          });
+          if (flat.indexOf(UI.cur) < 0) {
+            UI.cur = flat[0];
+            UI.curOpen = true;
+          }
+          var all =
+            "Verify each finding against the current code and only fix it if it is still valid.\n\n" +
+            vis
+              .map(function (c) {
+                return (
+                  "- [" +
+                  c.severity +
+                  "] " +
+                  (c.agent_prompt || "In " + loc(c) + ": " + c.title)
+                );
+              })
+              .join("\n");
+          return (
+            '<div class="fall"><span class="small muted">' +
+            plural(vis.length, "finding") +
+            " in " +
+            plural(groups.length, "file") +
+            "</span>" +
+            copyBtn(all, "Copy AI prompt for these " + vis.length) +
+            '</div><div class="flist">' +
+            groups
+              .map(function (g) {
+                return (
+                  '<div class="fpath">' +
+                  esc(g.file) +
+                  "</div>" +
+                  g.items
+                    .map(function (c) {
+                      return findingRow(c);
+                    })
+                    .join("")
+                );
+              })
+              .join("") +
+            "</div>"
+          );
+        }
+
+        function findingRow(c, closed) {
+          PROMPTS[c.id] = promptOf(c);
+          var on = !closed && UI.cur === c.id,
+            open = on && UI.curOpen;
+          var std = c.standard ? stdById(c.standard) : null;
+          var h =
+            '<div class="f' +
+            (closed ? " closed" : "") +
+            (on ? " sel" : "") +
+            (open ? " open" : "") +
+            '" data-id="' +
+            esc(c.id) +
+            '"><button class="frow" type="button" aria-expanded="' +
+            open +
+            '"><span class="sev sev-' +
+            c.severity +
+            '">' +
+            SEV_LABEL[c.severity] +
+            '</span><span class="ft">' +
+            tinl(c.title) +
+            '</span><span class="fl mono">' +
+            (closed
+              ? '<span class="badge ' +
+                (c.status === "resolved" ? "ok" : "muted") +
+                '">' +
+                esc(c.status) +
+                "</span>"
+              : esc(lines(c))) +
+            "</span></button>";
+          h +=
+            '<div class="fbody"><div class="ftags"><span class="badge">' +
+            esc(c.category || "other") +
+            "</span>" +
+            (c.standard
+              ? '<a class="badge" href="#/standards/' +
+                c.standard +
+                '">' +
+                c.standard +
+                (std ? " · " + esc(std.title) : "") +
+                "</a>"
+              : "") +
+            '<span class="cid mono">' +
+            esc(c.id) +
+            '</span><span class="loc mono">' +
+            esc(loc(c)) +
+            "</span></div>" +
+            md(c.body);
+          if (c.suggestion)
+            h +=
+              '<div class="lbl">Suggested change</div>' +
+              (/^[+-]/m.test(c.suggestion)
+                ? diffHtml(c.suggestion)
+                : '<pre class="code">' + esc(c.suggestion) + "</pre>");
+          if (!closed)
+            h +=
+              '<div class="withcopy prompt-w"><details class="prompt"><summary>' +
+              ico("bot") +
+              'Prompt for AI agents</summary><pre class="code">' +
+              esc(PROMPTS[c.id]) +
+              "</pre></details>" +
+              copyBtn(PROMPTS[c.id], "Copy prompt") +
+              "</div>";
+          h +=
+            '<div class="fmeta">Raised in review #' +
+            (c.created_run || "?") +
+            (c.closed_run ? " · closed in #" + c.closed_run : "") +
+            (c.resolution ? " · " + inl(c.resolution) : "") +
+            "</div></div></div>";
+          return h;
+        }
+
+        function refreshFindings() {
+          var tb = document.querySelector(".tabbody");
+          if (tb && CUR.view === "branch")
+            tb.innerHTML = findingsTab(CUR.b, CUR.open);
+        }
+        function applySel(scroll) {
+          document.querySelectorAll("#flist .f").forEach(function (el) {
+            var on = el.dataset.id === UI.cur,
+              open = on && UI.curOpen;
+            el.classList.toggle("sel", on);
+            el.classList.toggle("open", open);
+            el.querySelector(".frow").setAttribute("aria-expanded", String(open));
+            if (on && scroll) el.scrollIntoView({ block: "nearest" });
+          });
+        }
+        function moveSel(d) {
+          var els = Array.prototype.slice.call(
+            document.querySelectorAll("#flist .f"),
+          );
+          if (!els.length) return;
+          var i = -1;
+          els.forEach(function (el, j) {
+            if (el.dataset.id === UI.cur) i = j;
+          });
+          i = Math.max(0, Math.min(els.length - 1, i < 0 ? 0 : i + d));
+          UI.cur = els[i].dataset.id;
+          UI.curOpen = true;
+          applySel(true);
+          els[i].querySelector(".frow").focus({ preventScroll: true });
+        }
+
+        // ---------------------------------------------------------------- change / checks / history
+        function changeTab(b) {
+          var h = "",
+            s = b.summary,
+            w = b.walkthrough;
+          if (b.effort)
+            h +=
+              '<div class="effort"><span class="muted">Review effort</span><b>' +
+              esc(b.effort.score) +
+              "/5</b>" +
+              (b.effort.minutes
+                ? '<span class="muted">~' + esc(b.effort.minutes) + " min</span>"
+                : "") +
+              "</div>" +
+              (b.effort.reason
+                ? '<p class="small muted">' + inl(b.effort.reason) + "</p>"
+                : "");
+          if (s) {
+            h +=
+              '<h2 class="sub">Summary</h2><div class="lead">' +
+              md(s.text || "") +
+              "</div>";
+            if ((s.highlights || []).length)
+              h +=
+                '<ul class="hl">' +
+                s.highlights
+                  .map(function (x) {
+                    return (
+                      '<li><span class="badge">' +
+                      esc(x.type) +
+                      "</span><span>" +
+                      inl(x.text) +
+                      "</span></li>"
+                    );
+                  })
+                  .join("") +
+                "</ul>";
+          }
+          if (w) {
+            h +=
+              '<h2 class="sub">Walkthrough</h2>' +
+              (w.overview ? '<div class="prose">' + md(w.overview) + "</div>" : "");
+            (w.changes || []).forEach(function (c, i) {
+              var files = c.files || [];
+              h +=
+                '<details class="fold"><summary><span class="ftitle">' +
+                (c.cohort
+                  ? tinl(c.cohort)
+                  : "<code>" + esc(files[0] || "Change " + (i + 1)) + "</code>") +
+                '</span><span class="muted small">' +
+                plural(files.length, "file") +
+                '</span></summary><div class="foldb"><ul class="files">' +
+                files
+                  .map(function (f) {
+                    return "<li>" + esc(f) + "</li>";
+                  })
+                  .join("") +
+                "</ul>" +
+                md(c.summary) +
+                "</div></details>";
+            });
+          }
+          if (b.diagram)
+            h +=
+              '<h2 class="sub">Diagram</h2><details class="fold diag" open><summary><span class="ftitle">Sequence diagram</span></summary><div class="foldb scroll"><pre class="mermaid">' +
+              esc(b.diagram) +
+              "</pre></div></details>";
+          return h || '<p class="empty">No summary for this branch yet.</p>';
+        }
+
+        function checksTab(b) {
+          var rows = b.checks_latest || [];
+          if (!rows.length)
+            return '<p class="empty">No checks recorded for this branch.</p>';
+          var ic = {
+            pass: '<span class="ckic ok">' + ico("check") + "</span>",
+            warn: '<span class="ckic warn">' + ico("alert") + "</span>",
+            fail: '<span class="ckic bad">' + ico("x") + "</span>",
+            "n/a": '<span class="ckic muted">' + ico("dash") + "</span>",
+          };
+          var order = { fail: 0, warn: 1, pass: 2, "n/a": 3 };
+          rows = rows.slice().sort(function (x, y) {
+            return order[x.status] - order[y.status];
+          });
+          var li = function (r) {
+            var c = checkName(r.id);
+            return (
+              "<li>" +
+              ic[r.status] +
+              " " +
+              esc(c.name || r.id) +
+              (c.blocking ? ' <span class="badge">blocking</span>' : "") +
+              (r.note && r.status !== "pass" && r.status !== "n/a"
+                ? '<div class="muted">' + inl(r.note) + "</div>"
+                : "") +
+              "</li>"
+            );
+          };
+          var issues = rows.filter(function (r) {
+            return r.status === "fail" || r.status === "warn";
+          });
+          var rest = rows.filter(function (r) {
+            return r.status === "pass" || r.status === "n/a";
+          });
+          var np = rest.filter(function (r) {
+            return r.status === "pass";
+          }).length;
+          return (
+            '<h2 class="sub">Needs attention</h2><div class="sec" style="margin:0"><ul class="clean">' +
+            (issues.length
+              ? issues.map(li).join("")
+              : '<li class="ok">' + ico("check") + " No check failing or warning</li>") +
+            '</ul></div><h2 class="sub">Everything else</h2><details class="fold"><summary><span class="ftitle">' +
+            np +
+            " passed · " +
+            (rest.length - np) +
+            ' not applicable</span></summary><div class="foldb"><ul class="clean small">' +
+            rest.map(li).join("") +
+            '</ul></div></details><p class="small muted">Checks run on every review. Blocking checks make the branch “Blocked” when they fail; change them with <code>CRR config --check ID --blocking true|false</code>.</p>'
+          );
+        }
+
+        function historyTab(b, closed) {
+          var h =
+            '<h2 class="sub">Review runs</h2><div class="tl">' +
+            (b.runs || [])
+              .slice()
+              .reverse()
+              .map(function (r) {
+                var c = r.counts || {};
+                return (
+                  '<div class="ev ' +
+                  (r.verdict || "") +
+                  '"><b>#' +
+                  r.n +
+                  "</b> · " +
+                  fmtDate(r.at) +
+                  ' · <span class="badge">' +
+                  esc(r.kind) +
+                  "</span> " +
+                  verdictBadge(r.verdict) +
+                  '<div class="small muted">+' +
+                  (c["new"] || 0) +
+                  " new · " +
+                  (c.resolved || 0) +
+                  " resolved · " +
+                  (c.dismissed || 0) +
+                  " dismissed · " +
+                  (c.excepted || 0) +
+                  " excepted · " +
+                  (c.reopened || 0) +
+                  " reopened" +
+                  (r.files_reviewed != null
+                    ? " · " + r.files_reviewed + " file(s)"
+                    : "") +
+                  (r.head
+                    ? ' · <span class="mono">' +
+                      esc(String(r.head).slice(0, 8)) +
+                      "</span>"
+                    : "") +
+                  (r.agent ? " · " + esc(r.agent) : "") +
+                  "</div>" +
+                  (r.note ? '<div class="small">' + inl(r.note) + "</div>" : "") +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>";
+          h +=
+            '<h2 class="sub">Closed findings · ' +
+            closed.length +
+            "</h2>" +
+            (closed.length
+              ? '<div class="flist" id="hlist">' +
+                groupByFile(closed)
+                  .map(function (g) {
+                    return (
+                      '<div class="fpath">' +
+                      esc(g.file) +
+                      "</div>" +
+                      g.items
+                        .map(function (c) {
+                          return findingRow(c, true);
+                        })
+                        .join("")
+                    );
+                  })
+                  .join("") +
+                "</div>"
+              : '<p class="empty">No closed findings yet.</p>');
+          return h;
+        }
+
+        // ---------------------------------------------------------------- standards
+        function stdMatches(s) {
+          return (
+            (UI.stdF === "all" || s.status === UI.stdF) &&
+            (!UI.stdCat || s.category === UI.stdCat) &&
+            (!UI.stdQ ||
+              (s.id + " " + s.title + " " + s.description)
+                .toLowerCase()
+                .indexOf(UI.stdQ) >= 0)
+          );
+        }
+        function violations(id) {
+          var n = 0;
+          CRR.branches.forEach(function (b) {
+            (b.comments || []).forEach(function (c) {
+              if (c.standard === id) n++;
+            });
+          });
+          return n;
+        }
+        function lvlCls(l) {
+          return (
+            {
+              required: "sev-major",
+              recommended: "sev-minor",
+              preference: "sev-nitpick",
+            }[l] || ""
+          );
+        }
+
+        function viewStandards(focus, f) {
+          if (f) UI.stdF = f;
+          var fs = focus ? stdById(focus) : null;
+          if (fs) {
+            UI.stdSel = fs.id;
+            if (!stdMatches(fs)) {
+              UI.stdF = "all";
+              UI.stdCat = "";
+              UI.stdQ = "";
+            }
+          }
+          var st = CRR.standards;
+          var count = function (k) {
+            return st.filter(function (s) {
+              return s.status === k;
+            }).length;
+          };
+          var cats = Array.from(
+            new Set(
+              st.map(function (s) {
+                return s.category;
+              }),
+            ),
+          ).sort();
+          var h =
+            '<h1>Standards</h1><p class="meta">The rules every review enforces. <b>Proposed</b> standards are not enforced until you validate them — say “show pending standards” to your agent.</p>';
+          if (!st.length)
+            return (
+              h +
+              '<div class="fempty">No standards yet. Say “analyze the project standards” to your agent. <a href="#/help/standards">How it works →</a></div>'
+            );
+          h +=
+            '<div class="ftool"><div class="chips">' +
+            ["active", "proposed", "deprecated", "rejected", "all"]
+              .map(function (k) {
+                return (
+                  '<button class="chip' +
+                  (UI.stdF === k ? " on" : "") +
+                  '" data-sf="' +
+                  k +
+                  '">' +
+                  k[0].toUpperCase() +
+                  k.slice(1) +
+                  (k !== "all" ? " · " + count(k) : "") +
+                  "</button>"
+                );
+              })
+              .join("") +
+            '</div><div class="sfilters"><select id="scat"><option value="">All categories</option>' +
+            cats
+              .map(function (c) {
+                return (
+                  "<option" +
+                  (UI.stdCat === c ? " selected" : "") +
+                  ">" +
+                  esc(c) +
+                  "</option>"
+                );
+              })
+              .join("") +
+            '</select><input class="search" id="sq" placeholder="Search…" value="' +
+            esc(UI.stdQ) +
+            '"></div></div>';
+          var log = CRR.stdlog
+            .slice()
+            .sort(function (a, b) {
+              return logKey(b).localeCompare(logKey(a));
+            })
+            .slice(0, 30);
+          h +=
+            '<div class="split"><div><div id="slist">' +
+            stdList() +
+            '</div><details class="fold"><summary><span class="ftitle">Recent changes</span><span class="muted small">' +
+            log.length +
+            '</span></summary><div class="foldb"><ul class="clean small">' +
+            log
+              .map(function (l) {
+                return (
+                  "<li>" +
+                  fmtDate(l.at) +
+                  ' · <a href="#/standards/' +
+                  l.standard +
+                  '">' +
+                  l.standard +
+                  "</a> · <b>" +
+                  esc(l.action) +
+                  "</b>" +
+                  (l.reason ? " — " + inl(l.reason) : "") +
+                  "</li>"
+                );
+              })
+              .join("") +
+            '</ul></div></details></div><div class="sdetail" id="sdetail">' +
+            stdDetail() +
+            "</div></div>";
+          return h;
+        }
+
+        function stdList() {
+          var list = CRR.standards.filter(stdMatches).sort(function (a, b) {
+            return (
+              a.category.localeCompare(b.category) ||
+              a.title.localeCompare(b.title)
+            );
+          });
+          if (!list.length)
+            return '<div class="slist"><p class="empty" style="padding:12px">No standards match.</p></div>';
+          if (
+            !list.some(function (s) {
+              return s.id === UI.stdSel;
+            })
+          )
+            UI.stdSel = list[0].id;
+          var cur = null,
+            h = '<div class="slist">';
+          list.forEach(function (s) {
+            if (s.category !== cur) {
+              cur = s.category;
+              h += '<div class="scat">' + esc(cur) + "</div>";
+            }
+            var v = violations(s.id);
+            h +=
+              '<a class="srow' +
+              (s.id === UI.stdSel ? " on" : "") +
+              '" href="#/standards/' +
+              s.id +
+              '"><span class="sid">' +
+              s.id +
+              '</span><span class="st">' +
+              tinl(s.title) +
+              '</span><span class="sm"><span class="' +
+              lvlCls(s.level) +
+              '">' +
+              esc(s.level) +
+              "</span>" +
+              (s.status !== "active" ? "<span>" + esc(s.status) + "</span>" : "") +
+              (s.divergence ? '<span class="bad">divergent</span>' : "") +
+              (v ? "<span>" + plural(v, "finding") + "</span>" : "") +
+              "</span></a>";
+          });
+          return h + "</div>";
+        }
+
+        function stdDetail() {
+          var s = UI.stdSel ? stdById(UI.stdSel) : null;
+          if (!s || !stdMatches(s))
+            return '<p class="empty">Select a standard.</p>';
+          var h =
+            '<div class="ftags"><span class="mono muted">' +
+            s.id +
+            '</span><span class="badge ' +
+            lvlCls(s.level) +
+            '">' +
+            esc(s.level) +
+            '</span><span class="badge">' +
+            esc(s.status) +
+            '</span><span class="badge">' +
+            esc(s.category) +
+            '</span><span class="badge muted">' +
+            esc(s.origin) +
+            "</span>" +
+            (s.divergence ? '<span class="badge bad">divergent</span>' : "") +
+            "</div><h2>" +
+            inl(s.title) +
+            "</h2>" +
+            md(s.description);
+          if (s.status === "proposed")
+            h += say([
+              "activate " + s.id,
+              "reject " + s.id + " because …",
+            ]);
+          if (s.divergence) h += '<div class="alert">' + inl(s.divergence.note) + "</div>";
+          var meta = [];
+          if (s.source && s.source.file)
+            meta.push([
+              "Source",
+              "<code>" +
+                esc(s.source.file) +
+                "</code>" +
+                (s.source.detail ? " — " + inl(s.source.detail) : ""),
+            ]);
+          if (s.scope && (s.scope.paths || []).length)
+            meta.push([
+              "Scope",
+              s.scope.paths
+                .map(function (p) {
+                  return "<code>" + esc(p) + "</code>";
+                })
+                .join(" "),
+            ]);
+          if (s.prevalence) meta.push(["Prevalence", inl(s.prevalence)]);
+          if (s.replaced_by)
+            meta.push([
+              "Replaced by",
+              '<a href="#/standards/' +
+                esc(s.replaced_by) +
+                '">' +
+                esc(s.replaced_by) +
+                "</a>",
+            ]);
+          if (s.migration)
+            meta.push([
+              "Migration",
+              "<b>" +
+                esc(s.migration.remaining) +
+                "</b> usage(s) of the old pattern left (" +
+                day(s.migration.measured_at) +
+                ")",
+            ]);
+          meta.push(["Cited by", plural(violations(s.id), "finding")]);
+          h +=
+            '<dl class="sm2">' +
+            meta
+              .map(function (m) {
+                return "<dt>" + m[0] + "</dt><dd>" + m[1] + "</dd>";
+              })
+              .join("") +
+            "</dl>";
+          if ((s.examples || []).length)
+            h +=
+              '<div class="lbl">Examples</div><ul class="clean small">' +
+              s.examples
+                .map(function (e) {
+                  return (
+                    "<li><code>" +
+                    esc(e.file || e) +
+                    "</code>" +
+                    (e.note ? " — " + inl(e.note) : "") +
+                    "</li>"
+                  );
+                })
+                .join("") +
+              "</ul>";
+          if ((s.exceptions || []).length)
+            h +=
+              '<div class="lbl">Exceptions</div><ul class="clean small">' +
+              s.exceptions
+                .map(function (e) {
+                  var x = excState(e) === "expired";
+                  return (
+                    "<li><code>" +
+                    esc(e.path) +
+                    "</code> — " +
+                    inl(e.reason) +
+                    (e.expires
+                      ? ' <span class="badge ' +
+                        (x ? "bad" : "") +
+                        '">' +
+                        (x ? "expired " : "until ") +
+                        esc(e.expires) +
+                        "</span>"
+                      : "") +
+                    "</li>"
+                  );
+                })
+                .join("") +
+              "</ul>";
+          var log = CRR.stdlog
+            .filter(function (l) {
+              return l.standard === s.id;
+            })
+            .sort(function (a, b) {
+              return logKey(b).localeCompare(logKey(a));
+            });
+          if (log.length)
+            h +=
+              '<div class="lbl">History</div><ul class="clean small">' +
+              log
+                .map(function (l) {
+                  return (
+                    "<li>" +
+                    fmtDate(l.at) +
+                    " · <b>" +
+                    esc(l.action) +
+                    "</b>" +
+                    (l.reason ? " — " + inl(l.reason) : "") +
+                    (l.branch
+                      ? ' <span class="muted">(' +
+                        esc(l.branch) +
+                        (l.run ? " #" + l.run : "") +
+                        ")</span>"
+                      : "") +
+                    "</li>"
+                  );
+                })
+                .join("") +
+              "</ul>";
+          return h;
+        }
+
+        function refreshStd() {
+          var l = document.getElementById("slist"),
+            d = document.getElementById("sdetail");
+          if (l) l.innerHTML = stdList();
+          if (d) d.innerHTML = stdDetail();
+          document.querySelectorAll(".chip[data-sf]").forEach(function (c) {
+            c.classList.toggle("on", c.dataset.sf === UI.stdF);
+          });
+        }
+
+        // ---------------------------------------------------------------- insights extras
+        function branchTable() {
+          var bs = sortedBranches();
+          if (!bs.length) return '<p class="empty">No reviews yet.</p>';
+          return (
+            '<div class="scroll"><table><thead><tr><th>Branch</th><th>Verdict</th><th>Open</th><th>Reviews</th><th>Last review</th></tr></thead><tbody>' +
+            bs
+              .map(function (b) {
+                var o = bySev(openC(b));
+                return (
+                  '<tr class="click' +
+                  (isCurrent(b) ? " current" : "") +
+                  '" data-href="' +
+                  bHref(b) +
+                  '"><td><code>' +
+                  esc(b.branch) +
+                  "</code>" +
+                  (isLocal(b) ? "" : ' <span class="muted small">historical</span>') +
+                  "</td><td>" +
+                  verdictBadge(b.verdict && stateOf(b)) +
+                  "</td><td>" +
+                  (SEV.map(function (s) {
+                    return o[s]
+                      ? '<span class="sev-' +
+                          s +
+                          '">' +
+                          o[s] +
+                          s[0].toUpperCase() +
+                          "</span>"
+                      : "";
+                  })
+                    .filter(Boolean)
+                    .join(" ") || '<span class="muted">0</span>') +
+                  "</td><td>" +
+                  reviewRuns(b).length +
+                  "</td><td>" +
+                  fmtDate(b.last_review && b.last_review.at) +
+                  "</td></tr>"
+                );
+              })
+              .join("") +
+            "</tbody></table></div>"
+          );
+        }
+
+        // ---------------------------------------------------------------- help
+        function say(list) {
+          return (
+            '<div class="say"><div class="lbl2">Say to your agent</div>' +
+            list
+              .map(function (p) {
+                return (
+                  '<div class="phrase"><q>' +
+                  tinl(p) +
+                  "</q>" +
+                  copyBtn(p.replace(/`/g, ""), "Copy") +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>"
+          );
+        }
+        function kv(rows) {
+          return (
+            '<dl class="kv">' +
+            rows
+              .map(function (r) {
+                return "<dt>" + r[0] + "</dt><dd>" + md(r[1]) + "</dd>";
+              })
+              .join("") +
+            "</dl>"
+          );
+        }
+        function tbl(head, rows) {
+          return (
+            '<div class="scroll"><table class="htable"><thead><tr>' +
+            head
+              .map(function (x) {
+                return "<th>" + x + "</th>";
+              })
+              .join("") +
+            "</tr></thead><tbody>" +
+            rows
+              .map(function (r) {
+                return (
+                  "<tr>" +
+                  r
+                    .map(function (c) {
+                      return "<td>" + inl(c) + "</td>";
+                    })
+                    .join("") +
+                  "</tr>"
+                );
+              })
+              .join("") +
+            "</tbody></table></div>"
+          );
+        }
+
+        function checklistHtml() {
+          var prop = proposedCount(),
+            cur = CRR.branches.filter(isCurrent)[0],
+            items = [];
+          items.push({
+            done: !!CRR.config,
+            t: "Initialize code review in this repo",
+            say: "initialize code review",
+            sec: "setup",
+          });
+          items.push({
+            done: CRR.standards.length > 0,
+            t: "Analyze the project standards",
+            say: "analyze the project standards",
+            sec: "standards",
+          });
+          items.push({
+            done: CRR.standards.length > 0 && !prop,
+            t: prop
+              ? "Validate " + plural(prop, "proposed standard")
+              : "Validate the proposed standards",
+            say: "show pending standards",
+            sec: "standards",
+            link: prop ? ["#/standards?f=proposed", "See them"] : null,
+          });
+          items.push({
+            done: CRR.branches.length > 0,
+            t: "Run your first review",
+            say: "review my changes",
+            sec: "review",
+          });
+          if (CRR.local && CRR.local.current_branch)
+            items.push({
+              done: !!cur,
+              t:
+                "Review the current branch <code>" +
+                esc(CRR.local.current_branch) +
+                "</code>",
+              say: "review my changes",
+              sec: "review",
+            });
+          if (cur)
+            items.push({
+              done: stateOf(cur) === "ready",
+              t: "Get the current branch ready to commit",
+              say: "fix the blockers",
+              sec: "act",
+              link: [bHref(cur), "Open branch"],
+            });
+          var n = items.filter(function (x) {
+            return x.done;
+          }).length;
+          if (n === items.length)
+            return (
+              '<div class="checklist alldone"><span class="ic">' +
+              ico("check") +
+              "</span><span><b>You're all set.</b> Code review is initialized, standards are validated and the current branch is ready to commit.</span></div>"
+            );
+          return (
+            '<div class="checklist"><div class="ch"><h2 style="margin:0">Getting started</h2><span class="small muted">' +
+            n +
+            " of " +
+            items.length +
+            ' done</span></div><div class="progress"><i style="width:' +
+            Math.round((100 * n) / items.length) +
+            '%"></i></div>' +
+            items
+              .map(function (x) {
+                return (
+                  '<div class="ck' +
+                  (x.done ? " done" : "") +
+                  '"><span class="ic">' +
+                  (x.done ? ico("check") : "") +
+                  '</span><span class="ckt">' +
+                  x.t +
+                  "</span>" +
+                  (x.done
+                    ? ""
+                    : '<div class="cks"><span class="muted">Say</span><q>' +
+                      esc(x.say) +
+                      "</q>" +
+                      copyBtn(x.say, "Copy") +
+                      (x.link
+                        ? '<a href="' + x.link[0] + '">' + x.link[1] + " →</a>"
+                        : "") +
+                      '<a href="#/help/' +
+                      x.sec +
+                      '">How →</a></div>') +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>"
+          );
+        }
+
+        var HELP = [
+          ["how", "How it works"],
+          ["setup", "First-time setup"],
+          ["standards", "Set up your standards"],
+          ["review", "Review your code"],
+          ["read", "Read the result"],
+          ["act", "Act on findings"],
+          ["maintain", "Maintain standards"],
+          ["team", "Team & git"],
+          ["trouble", "Troubleshooting"],
+          ["ref", "Quick reference"],
+        ];
+        var HELP_BODY = {
+          how: function () {
+            return (
+              md(
+                "A **local, CodeRabbit-style review** that your coding agent (Claude Code, Codex, Copilot…) runs through the `acanimal-code-review` skill. It checks your changes against **your project's own standards** and stores everything in `.code-review/`, so the history travels with the repo.",
+              ) +
+              '<ol class="cycle"><li>Review</li><li class="arr">→</li><li>Findings</li><li class="arr">→</li><li>Fix or dismiss</li><li class="arr">→</li><li>Re-review</li><li class="arr">→</li><li>Ready</li><li class="arr">→</li><li>Commit</li></ol>' +
+              md(
+                [
+                  "- You never edit anything in this panel. **You talk to your agent**; the panel shows the result. Reload the page after each agent action.",
+                  "- The agent never commits, pushes or changes code without showing you the change and asking first.",
+                  "- The review is read-only: it does not run linters, tests or builds, and nothing leaves your machine.",
+                ].join("\n"),
+              )
+            );
+          },
+          setup: function () {
+            return (
+              md(
+                "**Requirements:** `git` and `python3` 3.9+. Install the skill in the project (for example `.agents/skills/acanimal-code-review/`) or globally for your agent.",
+              ) +
+              say(["initialize code review"]) +
+              kv([
+                [
+                  "What happens",
+                  "The agent runs `CRR init`: creates `.code-review/` with this panel, the config and the data index. Safe to repeat — it also upgrades the viewer.",
+                ],
+                [
+                  "Optional",
+                  "- Language of review texts: “write the reviews in Spanish” (`CRR config --language es`).\n- Base branch: “use develop as the base branch” (`CRR config --base develop`).",
+                ],
+                [
+                  "Then",
+                  "Commit `.code-review/` so the whole team shares the history (`.code-review/.tmp/` is git-ignored). Open the panel by double-clicking `.code-review/index.html` — no server needed — or say “open the review panel”.",
+                ],
+              ])
+            );
+          },
+          standards: function () {
+            return (
+              md(
+                "Standards are the rules the review enforces (e.g. “use Astryx components”, “document every env var”). Do this once per project; you can review before it, but then the review only relies on general good practice.",
+              ) +
+              say(["analyze the project standards"]) +
+              kv([
+                [
+                  "What happens",
+                  "- The agent measures the repo (`CRR repo-stats`). For big repos it asks the scope: all files, a sample, or on demand by folder.\n- It reads **explicit** sources (linter configs, CONTRIBUTING, AGENTS.md / CLAUDE.md…) and **infers** patterns from the code.\n- When two patterns compete it asks you which one wins.",
+                ],
+                [
+                  "Result",
+                  "Explicit rules are saved as **active** (enforced right away). Inferred ones are saved as **proposed** — not enforced until you validate them.",
+                ],
+                [
+                  "Then",
+                  "Validate the proposals: say “show pending standards” and accept, adjust or reject each one, or browse them in [Standards](#/standards?f=proposed).",
+                ],
+              ]) +
+              tbl(
+                ["Level", "Finding severity", "Blocks the commit?"],
+                [
+                  ["`required`", "Major", "Yes"],
+                  ["`recommended`", "Minor", "No"],
+                  ["`preference`", "Nitpick", "No"],
+                ],
+              )
+            );
+          },
+          review: function () {
+            return (
+              md(
+                "One phrase covers most cases: **“review my changes”**. The agent picks what to review; use the other phrases when you want something specific.",
+              ) +
+              tbl(
+                ["Situation", "Say", "What gets reviewed"],
+                [
+                  [
+                    "First review of the branch, with uncommitted work",
+                    "“review my changes”",
+                    "All pending changes: staged, unstaged and untracked files.",
+                  ],
+                  [
+                    "You already reviewed and then fixed things",
+                    "“review my changes”",
+                    "Only what changed since the last review (incremental). Open findings are re-checked and closed automatically when fixed.",
+                  ],
+                  [
+                    "You want a fresh look at all pending changes",
+                    "“full re-review”",
+                    "All pending changes, from scratch.",
+                  ],
+                  [
+                    "Before opening a PR",
+                    "“review the whole branch”",
+                    "Every commit since the base branch.",
+                  ],
+                  [
+                    "You committed without reviewing",
+                    "“review my changes”",
+                    "The agent tells you and asks whether to include those commits.",
+                  ],
+                  [
+                    "You rebased or amended",
+                    "“review my changes”",
+                    "The agent detects the rewritten history and proposes a whole-branch review.",
+                  ],
+                ],
+              ) +
+              say([
+                "review my changes",
+                "full re-review",
+                "review the whole branch",
+              ]) +
+              kv([
+                [
+                  "You get",
+                  "In chat: the verdict and blockers, counts by severity, the top issues (with IDs) and a proposed commit message. Everything else is in this panel, under the branch.",
+                ],
+                [
+                  "Then",
+                  "Fix what blocks (see Act on findings), re-review, and commit **including `.code-review/`**.",
+                ],
+              ])
+            );
+          },
+          read: function () {
+            return (
+              kv([
+                [
+                  "Verdict",
+                  "- **Blocked** — an open Critical or Major finding, or a failing *blocking* check.\n- **Ready to commit** — none of the above. Minor findings and nitpicks never block.",
+                ],
+                [
+                  "Severity",
+                  "- **Critical** — breaks production, loses data, security issue, crash.\n- **Major** — real bug or violation of a *required* standard.\n- **Minor** — violation of a *recommended* standard.\n- **Nitpick** — *preference*; hidden by default in the Findings tab.",
+                ],
+                [
+                  "IDs",
+                  "Findings look like `ACR-xxxxxx`, standards like `STD-xxxx`. Use them when talking to your agent.",
+                ],
+              ]) +
+              tbl(
+                ["Branch tab", "What it shows"],
+                [
+                  [
+                    "**Findings**",
+                    "Open findings grouped by file, worst first. Open one to see the explanation, the suggested change and a prompt for other agents.",
+                  ],
+                  [
+                    "**Change**",
+                    "What the branch does: summary, highlights, walkthrough by area, sequence diagram and estimated review effort.",
+                  ],
+                  [
+                    "**Checks**",
+                    "Automatic checks (leftover debug code, conflict markers, TODOs…). Failures and warnings first.",
+                  ],
+                  [
+                    "**History**",
+                    "Every review run of the branch, and the findings already closed (resolved, dismissed, excepted).",
+                  ],
+                ],
+              ) +
+              tbl(
+                ["Key", "Action (Findings tab)"],
+                [
+                  ["`j` / `k`", "Next / previous finding"],
+                  ["`Enter`", "Open or close the selected finding"],
+                  ["`c`", "Copy the AI prompt of the selected finding"],
+                  ["`1` – `4`", "Switch tab"],
+                ],
+              )
+            );
+          },
+          act: function () {
+            return (
+              tbl(
+                ["You want to…", "Say", "What happens"],
+                [
+                  [
+                    "Understand a finding",
+                    "“explain ACR-xxxxxx”",
+                    "The agent reads the code and answers in chat. Nothing changes.",
+                  ],
+                  [
+                    "Fix one",
+                    "“fix ACR-xxxxxx”",
+                    "It shows the exact diff and asks you. After you confirm, it applies it and re-reviews to verify.",
+                  ],
+                  [
+                    "Fix several",
+                    "“fix the blockers” · “apply the suggestions”",
+                    "It shows every change first; you can confirm them in one go.",
+                  ],
+                  [
+                    "Say it does not apply",
+                    "“dismiss ACR-xxxxxx because …”",
+                    "Closed as dismissed. A reason is required. If it sounds like a general rule, the agent offers to turn it into a standard.",
+                  ],
+                  [
+                    "Allow it only somewhere",
+                    "“ACR-xxxxxx is fine in src/legacy/”",
+                    "Adds an exception to the standard for that path (reason required, optional expiry date). Only for findings linked to a standard.",
+                  ],
+                  [
+                    "Clean up in bulk",
+                    "“dismiss all nitpicks”",
+                    "It lists what will change, then applies it.",
+                  ],
+                  [
+                    "Hand it to another agent",
+                    "“Copy AI prompt” button",
+                    "Each finding has a self-contained prompt. The Findings tab can also copy one prompt for all visible findings.",
+                  ],
+                ],
+              ) +
+              say(["fix the blockers", "explain ACR-xxxxxx"])
+            );
+          },
+          maintain: function () {
+            return (
+              tbl(
+                ["When…", "Say", "What happens"],
+                [
+                  [
+                    "You have a rule that is not recorded",
+                    "“in this project we do Y”",
+                    "The agent proposes a new standard (title, level, scope). It is saved only after you agree.",
+                  ],
+                  [
+                    "A finding is wrong because the rule changed",
+                    "“ACR-xxxxxx is wrong, we use Y”",
+                    "It proposes updating the standard.",
+                  ],
+                  [
+                    "A pattern is being replaced",
+                    "“deprecate STD-xxxx in favour of STD-yyyy”",
+                    "Old code is tolerated, new code must use the replacement. Remaining usages are measured on each re-analysis.",
+                  ],
+                  [
+                    "The code has moved on",
+                    "“re-analyze the standards in src/lib”",
+                    "Re-runs the analysis (whole repo or one folder), updates migrations and flags standards that no longer match the code.",
+                  ],
+                  [
+                    "An exception has expired",
+                    "“renew the exception for STD-xxxx until 2027-03-01” · “remove it”",
+                    "Expired exceptions are reported until renewed or removed.",
+                  ],
+                ],
+              ) +
+              md(
+                "**Divergent standards.** If you change a standard that came from a file (say AGENTS.md), it no longer matches its source. The agent proposes the matching edit to that file; until it is applied, the panel and every review remind you. Alerts like this appear in the banner at the top of the panel and at the end of each review.",
+              )
+            );
+          },
+          team: function () {
+            return md(
+              [
+                "- **Commit `.code-review/` with your code.** Each branch has its own data file, so the history survives merges and is visible to the whole team.",
+                "- The panel shows every branch visible in your checkout (main, merged branches and the current one). Branches that no longer exist locally are shown as *historical*.",
+                "- On merge, `data/index.js` merges automatically. If another `.code-review/data/*.js` file has conflict markers, the script stops and names it: resolve it like any conflict, then say “rebuild the review index” (`CRR index`).",
+                "- Never edit files under `.code-review/` by hand — always go through the agent.",
+              ].join("\n"),
+            );
+          },
+          trouble: function () {
+            return tbl(
+              ["Symptom", "What to do"],
+              [
+                [
+                  "“Nothing to review”",
+                  "No changes since the last review. Say “review the whole branch” or “full re-review” if you want one anyway.",
+                ],
+                [
+                  "The panel shows old data",
+                  "Reload the page. If a branch is still missing, say “rebuild the review index”.",
+                ],
+                [
+                  "“Some data files could not be loaded”",
+                  "The index points to missing files (usually after a merge or a manual delete). Say “rebuild the review index”.",
+                ],
+                [
+                  "The current branch is not highlighted",
+                  "`.code-review/.tmp/local.js` is generated on each agent run in this worktree. Run any review command.",
+                ],
+                [
+                  "The diagram shows plain text",
+                  "Diagrams load Mermaid from a CDN; offline, the source text is shown instead.",
+                ],
+              ],
+            );
+          },
+          ref: function () {
+            return (
+              tbl(
+                ["You say", "The agent does"],
+                [
+                  ["“initialize code review”", "`CRR init`"],
+                  ["“analyze the project standards”", "`CRR repo-stats`, then records standards with `CRR std`"],
+                  ["“review my changes” / “full re-review” / “review the whole branch”", "`CRR context --mode auto|full|branch`, reviews, then `CRR apply`"],
+                  ["“explain / fix / dismiss ACR-xxxxxx”", "`CRR show`, then a status update with `CRR apply`"],
+                  ["“show pending standards”", "`CRR standards --status proposed`"],
+                  ["“open the review panel”", "Gives you the path to `.code-review/index.html`"],
+                ],
+              ) +
+              md(
+                [
+                  "```",
+                  "CRR init                         create/upgrade .code-review/",
+                  "CRR context [--mode auto|pending|full|branch]   resolve the diff to review",
+                  "CRR apply <run.json>             record a review or a status change",
+                  "CRR std <ops.json>               manage standards / exceptions",
+                  "CRR list | CRR show <ID> | CRR standards   read data",
+                  "CRR config [--language xx] [--base REF] [--check ID --enabled|--blocking true|false]",
+                  "CRR repo-stats                   repo size / standards analysis",
+                  "CRR index                        rebuild the panel index",
+                  "```",
+                ].join("\n"),
+              ) +
+              '<p class="small muted"><code>CRR</code> = <code>python3 &lt;skill dir&gt;/scripts/crr.py</code>. You rarely need these: the agent runs them for you.</p>'
+            );
+          },
+        };
+
+        function viewHelp() {
+          var h =
+            '<div class="help"><nav class="toc" id="toc">' +
+            HELP.map(function (x, i) {
+              return (
+                '<a href="#/help/' +
+                x[0] +
+                '" data-sec="' +
+                x[0] +
+                '"><span class="tnum">' +
+                (i + 1) +
+                "</span>" +
+                x[1] +
+                "</a>"
+              );
+            }).join("") +
+            '</nav><div class="hbody"><h1>Guide</h1><p class="meta">How to set up, run and act on local code reviews with your coding agent.</p>' +
+            checklistHtml();
+          HELP.forEach(function (x, i) {
+            h +=
+              '<section class="hsec" id="h-' +
+              x[0] +
+              '"><h2><span class="num">' +
+              (i + 1) +
+              "</span>" +
+              x[1] +
+              "</h2>" +
+              HELP_BODY[x[0]]() +
+              "</section>";
+          });
+          return h + "</div></div>";
+        }
+        function initSpy() {
+          if (spy) spy.disconnect();
+          if (!window.IntersectionObserver) return;
+          spy = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                var id = e.target.id.slice(2);
+                document.querySelectorAll("#toc a").forEach(function (a) {
+                  a.classList.toggle("on", a.dataset.sec === id);
+                });
+              });
+            },
+            { rootMargin: "0px 0px -75% 0px" },
+          );
+          document.querySelectorAll(".hsec").forEach(function (s) {
+            spy.observe(s);
+          });
+        }
+
+        function viewWelcome() {
+          return (
+            '<div class="welcome"><h1>Welcome to your code review panel</h1><p class="meta">Nothing has been reviewed yet. Follow these steps with your coding agent — each one tells you what to say.</p>' +
+            checklistHtml() +
+            '<p><a href="#/help">Read the full guide →</a></p></div>'
+          );
+        }
+
+        // ---------------------------------------------------------------- router
+        var lastKey = null;
+        function route() {
+          var hash = location.hash.replace(/^#\/?/, ""),
+            q = "";
+          if (hash.indexOf("?") >= 0) {
+            q = hash.slice(hash.indexOf("?") + 1);
+            hash = hash.slice(0, hash.indexOf("?"));
+          }
+          var parts = hash.split("/").map(decodeURIComponent),
+            v = parts[0] || "home",
+            html;
+          COPY = {};
+          PROMPTS = {};
+          CUR = { view: v };
+          if (v === "branch") {
+            location.replace(
+              parts[1] ? "#/b/" + encodeURIComponent(parts[1]) : "#/",
+            );
+            return;
+          }
+          if (v === "home") {
+            var d = sortedBranches()[0];
+            if (d) {
+              location.replace(bHref(d));
+              return;
+            }
+            v = "welcome";
+            html = viewWelcome();
+          } else if (v === "b") {
+            v = "branch";
+            html = viewBranch(parts[1], parts[2], q);
+          } else if (v === "standards")
+            html = viewStandards(parts[1], qp(q, "f"));
+          else if (v === "insights") html = viewInsights();
+          else if (v === "help") html = viewHelp();
+          else {
+            location.replace("#/");
+            return;
+          }
+          var al = v === "help" || v === "welcome" ? [] : globalAlerts();
+          app.innerHTML =
+            (al.length ? '<div class="galerts">' + alertsHtml(al) + "</div>" : "") +
+            html;
+          renderNav(v, parts[1]);
+          if (document.querySelector("details.diag[open]")) renderMermaid();
+
+          var key = v + "/" + (v === "branch" ? parts[1] : "");
+          if (v === "help") {
+            var sec = parts[1] && document.getElementById("h-" + parts[1]);
+            if (sec) sec.scrollIntoView();
+            else window.scrollTo(0, 0);
+            initSpy();
+          } else if (key !== lastKey) window.scrollTo(0, 0);
+          else if (v === "branch") {
+            var bh = document.getElementById("bh"),
+              mt = document.querySelector(".mtop"),
+              y = bh.offsetTop + bh.offsetHeight - (mt.offsetHeight || 0);
+            if (window.scrollY > y) window.scrollTo(0, y);
+          } else if (
+            v === "standards" &&
+            parts[1] &&
+            window.matchMedia("(max-width: 760px)").matches
+          ) {
+            var sd = document.getElementById("sdetail");
+            if (sd) sd.scrollIntoView();
+          }
+          lastKey = key;
+        }
+
+        // ---------------------------------------------------------------- events
         document.addEventListener("click", function (e) {
           var t = e.target.closest("[data-copy]");
           if (t) {
+            e.preventDefault();
             copyText(COPY[t.dataset.copy] || "", t);
             return;
           }
@@ -2483,36 +4374,38 @@
             location.hash = tr.dataset.href;
             return;
           }
-          var f = e.target.closest(".chip[data-f]");
-          if (f) {
-            document.querySelectorAll(".chip[data-f]").forEach(function (c) {
-              c.classList.toggle("on", c === f);
-            });
-            var sev = f.dataset.f;
-            document
-              .querySelectorAll("#comments details.cmt")
-              .forEach(function (d) {
-                d.classList.toggle(
-                  "hidden",
-                  sev !== "all" && d.dataset.sev !== sev,
-                );
-              });
-            document
-              .querySelectorAll("#comments h3.file")
-              .forEach(function (h) {
-                var n = h.nextElementSibling,
-                  any = false;
-                while (n && n.matches("details.cmt")) {
-                  if (!n.classList.contains("hidden")) any = true;
-                  n = n.nextElementSibling;
-                }
-                h.classList.toggle("hidden", !any);
-              });
+          var row = e.target.closest(".frow");
+          if (row) {
+            var f = row.parentNode;
+            if (f.classList.contains("closed")) {
+              f.classList.toggle("open");
+              return;
+            }
+            if (UI.cur === f.dataset.id) UI.curOpen = !UI.curOpen;
+            else {
+              UI.cur = f.dataset.id;
+              UI.curOpen = true;
+            }
+            applySel(false);
+            return;
+          }
+          var fc = e.target.closest(".chip[data-f]");
+          if (fc) {
+            if (!fc.disabled) {
+              UI.sev = fc.dataset.f;
+              refreshFindings();
+            }
+            return;
+          }
+          if (e.target.closest(".chip[data-nits]")) {
+            UI.nits = !UI.nits;
+            refreshFindings();
             return;
           }
           var sf = e.target.closest(".chip[data-sf]");
           if (sf) {
-            applyStdFilter(sf.dataset.sf);
+            UI.stdF = sf.dataset.sf;
+            refreshStd();
             return;
           }
           var hs = e.target.closest(".chip[data-hs]");
@@ -2529,19 +4422,58 @@
           }
         });
         document.addEventListener("input", function (e) {
-          if (e.target.id === "sq" || e.target.id === "scat") {
-            var on = document.querySelector(".chip[data-sf].on");
-            applyStdFilter(on ? on.dataset.sf : "all");
+          if (e.target.id === "sq") {
+            UI.stdQ = e.target.value.toLowerCase();
+            refreshStd();
+          } else if (e.target.id === "scat") {
+            UI.stdCat = e.target.value;
+            refreshStd();
+          }
+        });
+        msel.addEventListener("change", function () {
+          location.hash = msel.value;
+        });
+        document.addEventListener(
+          "toggle",
+          function (e) {
+            if (e.target.classList && e.target.classList.contains("diag") && e.target.open)
+              renderMermaid();
+          },
+          true,
+        );
+        document.addEventListener("keydown", function (e) {
+          if (e.metaKey || e.ctrlKey || e.altKey) return;
+          if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+          if (CUR.view !== "branch") return;
+          if (/^[1-4]$/.test(e.key)) {
+            location.hash = bHref(CUR.b, TABS[+e.key - 1]);
+            return;
+          }
+          if (CUR.tab !== "findings") return;
+          if (e.key === "j") {
+            e.preventDefault();
+            moveSel(1);
+          } else if (e.key === "k") {
+            e.preventDefault();
+            moveSel(-1);
+          } else if (e.key === "Enter" && !e.target.closest(".frow")) {
+            if (!UI.cur) return;
+            UI.curOpen = !UI.curOpen;
+            applySel(true);
+          } else if (e.key === "Escape") {
+            UI.curOpen = false;
+            applySel(false);
+          } else if (e.key === "c" && UI.cur) {
+            var btn = document.querySelector(
+              '#flist .f[data-id="' + UI.cur + '"] .prompt-w > [data-copy]',
+            );
+            if (btn) copyText(PROMPTS[UI.cur] || "", btn);
           }
         });
         window.addEventListener("hashchange", route);
 
         loadAll(function () {
-          if (CRR.local && CRR.local.repo) {
-            document.getElementById("brand").innerHTML =
-              "Code review <span>· " + esc(CRR.local.repo) + "</span>";
-            document.title = "Code Review · " + CRR.local.repo;
-          }
+          if (repoName()) document.title = "Code Review · " + repoName();
           route();
         });
       })();
